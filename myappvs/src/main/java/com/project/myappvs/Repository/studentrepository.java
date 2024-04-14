@@ -1,5 +1,7 @@
 package com.project.myappvs.Repository;
 
-public class studentrepository {
 
+
+public class Studentrepository {
+    
 }
