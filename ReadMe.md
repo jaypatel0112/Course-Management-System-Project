@@ -34,5 +34,6 @@ Will meet using Zoom as per milestone requirements. Mandatory meeting the day ne
 | 2 | Dependency Management| Maven                 | Gradle                  | All team members are familiar with the build tool                                     |
 | 3 | ORM                  | JPA, Hibernate        | -                       | Need to implement this for Java Object -> Database Rows and vice versa                |
 | 4 | Database             | H2                    | MySQL                   | Sticking to a RDBMS which meets current requirements. Might pivot to NoSql if need be |
+| 5 | JDK                  | 17                    | 22, 21...               | Long term release version and most of the members have it installed in their machines already.|
 
 
