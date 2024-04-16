@@ -15,7 +15,7 @@ All of these Sections will be Accessible from a HomePage similar to Campus Conne
 | Patel Jay Rashmitbhai                | Login/Sign-up                        |
 | Reddy Guntaka Satish Harshavardhan   | Course Search (Catalog)              |
 | Puneeth Talluri                      | Enrolled Courses                     |
-| Patel Shivangi                       | Course Details, Home Page            |
+| Patel Shivangi                       |  Course Details,Home Page            |
 | Siddiqui Atif                        | Profile                              |
 
 
@@ -24,7 +24,7 @@ Participate In Zoom Meetings and discord Chat to get a vote on the issue from al
 
 
 # Communication Mechanism
-Will meet using Zoom as per milestone requirements. Mandatory meeting the day next to class, Will decide on atleast anoter 2 meetings before the Milestone Due Date in this meeting.
+Will meet using Zoom as per milestone requirements. Mandatory meeting the day next to class, Will decide on atleast another 2 meetings before the Milestone Due Date in this meeting. 
 
 # Decision Table
 
@@ -33,6 +33,6 @@ Will meet using Zoom as per milestone requirements. Mandatory meeting the day ne
 | 1 | IDE                  | Use VS Code           | IntelliJ, Eclipse       | Language independent editor so that it can be used in non-java course                 |
 | 2 | Dependency Management| Maven                 | Gradle                  | All team members are familiar with the build tool                                     |
 | 3 | ORM                  | JPA, Hibernate        | -                       | Need to implement this for Java Object -> Database Rows and vice versa                |
-| 4 | Database             | H2                    | MySQL                   | Sticking to a RDBMS which meets current requirements. Might pivot to NoSql if need be |
+| 4 | Database             | H2                    | MySQL                   | Sticking to a RDBMS which meets current requirements. Might pivot to NoSql if data asks for that |
 
 
