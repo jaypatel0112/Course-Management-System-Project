@@ -1,20 +1,35 @@
 package com.project.myappvs.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import java.util.List;
 
 @Entity
 public class Student {
-    private String name;
-    private String emailId;
-    private String password;
-    private String number;
-    private String studentIdNumber;
 
-    public Student(String name, String emailId, String password, String number, String studentIdNumber) {
+    private String name;
+
+    private String emailId;
+
+    @Column(nullable = false)
+    private String password;
+
+    private String number;
+
+    @Id
+    @Column(unique = true)
+    private Long studentIdNumber;
+
+    public Student() {
+    }
+
+    public Student(String name, String emailId, String password, String number, Long studentIdNumber) {
         this.name = name;
         this.emailId = emailId;
         this.password = password;
@@ -54,12 +69,12 @@ public class Student {
         this.number = number;
     }
 
-    public String getStudentIdNumber() {
+    public Long getStudentIdNumber() {
         return studentIdNumber;
     }
 
     public void setStudentIdNumber(String studentIdNumber) {
-        this.studentIdNumber = studentIdNumber;
+        this.studentIdNumber = Long.parseLong(studentIdNumber);
     }
 
 }
