@@ -6,7 +6,7 @@ The objective of the Project is to develop an Application which is similar to D2
 4. Course Specific Content
 5. Profile
 
-All of these Sections will be Accessible from a HomePage similar to Campus Connect. All the sections will be dsiplayed as Cards to select from.
+All of these Sections will be Accessible from a HomePage similar to Campus Connect. All the sections will be displayed as Cards to select from. The prototype for this app demonstrates these features and is located [here.](https://docs.google.com/presentation/d/1QjD8G9kpWbk5O_mX6PxxExSkT-fPpU7aEpygSH_JCzo/edit?usp=sharing)
 
 # Project Members
 
@@ -34,5 +34,6 @@ Will meet using Zoom as per milestone requirements. Mandatory meeting the day ne
 | 2 | Dependency Management| Maven                 | Gradle                  | All team members are familiar with the build tool                                     |
 | 3 | ORM                  | JPA, Hibernate        | -                       | Need to implement this for Java Object -> Database Rows and vice versa                |
 | 4 | Database             | H2                    | MySQL                   | Sticking to a RDBMS which meets current requirements. Might pivot to NoSql if need be |
+| 5 | JDK                  | 17                    | 22, 21...               | Long term release version and most of the members have it installed in their machines already.|
 
 
