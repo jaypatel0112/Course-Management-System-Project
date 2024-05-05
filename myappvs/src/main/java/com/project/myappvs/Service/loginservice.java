@@ -1,6 +1,7 @@
 package com.project.myappvs.Service;
 
 import com.project.myappvs.Model.Student;
+import com.project.myappvs.Model.User;
 import com.project.myappvs.Repository.Studentrepository;
 
 import java.util.List;
@@ -26,14 +27,10 @@ public class Loginservice {
      * }
      */
 
-    public String login(Student student) throws Exception {
-        Optional<Student> student1 = studentRepository.findByEmailIdAndPassword(student.getEmailId(),
-                student.getPassword());
-        if (!student1.isPresent()) {
-            throw new Exception("User does not exist please enter a valid username/password ");
-        }
-
-        return student.getName();
+    public String login(User user) throws Exception {
+        User existingUser = studentRepository.findByEmailIdAndPassword(user.getEmailId(), user.getPassword())
+                .orElseThrow(() -> new Exception("Invalid credentials"));
+        return existingUser.getStudent().getName();
     }
 
     public Student addStudent(Student student) {

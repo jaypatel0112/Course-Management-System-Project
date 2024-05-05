@@ -12,10 +12,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.myappvs.Model.Student;
+import com.project.myappvs.Model.User;
+import com.project.myappvs.Repository.Studentrepository;
 import com.project.myappvs.Service.Loginservice;
+
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
+@Slf4j
 public class Login {
 
     @Autowired
@@ -26,11 +32,11 @@ public class Login {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody Student student) throws Exception {
+    public ResponseEntity<String> login(@RequestBody User user) throws Exception {
 
         String loginstudent;
         try {
-            loginstudent = loginservice.login(student);
+            loginstudent = loginservice.login(user);
         } catch (Exception exception) {
             throw exception;
         }
@@ -48,5 +54,6 @@ public class Login {
             throw exception;
         }
         return ResponseEntity.of(Optional.of(saveStudent));
+
     }
 }

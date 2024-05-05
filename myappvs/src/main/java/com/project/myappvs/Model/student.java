@@ -2,37 +2,46 @@ package com.project.myappvs.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 
 @Entity
+@Table(name = "Students")
+@Data
 public class Student {
-
-    private String name;
-
-    private String emailId;
-
-    @Column(nullable = false)
-    private String password;
-
-    private String number;
 
     @Id
     @Column(unique = true)
     private Long studentIdNumber;
+    private String name;
+
+    private String emailId;
+
+    @OneToOne(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private User user;
+
+    private String number;
 
     public Student() {
     }
 
-    public Student(String name, String emailId, String password, String number, Long studentIdNumber) {
+    public Student(String name, String emailId, String number, Long studentIdNumber) {
         this.name = name;
         this.emailId = emailId;
-        this.password = password;
         this.number = number;
         this.studentIdNumber = studentIdNumber;
     }
@@ -53,14 +62,6 @@ public class Student {
         this.emailId = emailId;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getNumber() {
         return number;
     }
@@ -75,6 +76,10 @@ public class Student {
 
     public void setStudentIdNumber(String studentIdNumber) {
         this.studentIdNumber = Long.parseLong(studentIdNumber);
+    }
+
+    public void setStudentIdNumber(Long studentIdNumber) {
+        this.studentIdNumber = studentIdNumber;
     }
 
 }
