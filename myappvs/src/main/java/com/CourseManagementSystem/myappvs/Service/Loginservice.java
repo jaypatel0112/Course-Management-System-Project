@@ -1,8 +1,9 @@
-package com.project.myappvs.Service;
+package com.CourseManagementSystem.myappvs.Service;
 
-import com.project.myappvs.Model.Student;
-import com.project.myappvs.Model.User;
-import com.project.myappvs.Repository.Studentrepository;
+import com.CourseManagementSystem.myappvs.Model.Student;
+import com.CourseManagementSystem.myappvs.Model.User;
+import com.CourseManagementSystem.myappvs.Repository.Studentrepository;
+import com.CourseManagementSystem.myappvs.Repository.Userrepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +18,9 @@ public class Loginservice {
     @Autowired
     private Studentrepository studentRepository;
 
+    @Autowired
+    private Userrepository userRepository;
+
     public Loginservice(Studentrepository studentRepository) {
         this.studentRepository = studentRepository;
     }
@@ -28,7 +32,7 @@ public class Loginservice {
      */
 
     public String login(User user) throws Exception {
-        User existingUser = studentRepository.findByEmailIdAndPassword(user.getEmailId(), user.getPassword())
+        User existingUser = userRepository.findByEmailIdAndPassword(user.getEmailId(), user.getPassword())
                 .orElseThrow(() -> new Exception("Invalid credentials"));
         return existingUser.getStudent().getName();
     }
@@ -36,6 +40,11 @@ public class Loginservice {
     public Student addStudent(Student student) {
         studentRepository.save(student);
         return student;
+    }
+
+    public User addUser(User user) {
+        userRepository.save(user);
+        return user;
     }
 
 }

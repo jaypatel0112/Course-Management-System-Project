@@ -1,4 +1,4 @@
-package com.project.myappvs.Model;
+package com.CourseManagementSystem.myappvs.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -80,6 +80,14 @@ public class Student {
 
     public void setStudentIdNumber(Long studentIdNumber) {
         this.studentIdNumber = studentIdNumber;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
 }
