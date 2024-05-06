@@ -1,5 +1,7 @@
 package com.CourseManagementSystem.myappvs.courseCatalog;
 
+import com.CourseManagementSystem.myappvs.instructor.Instructor;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
