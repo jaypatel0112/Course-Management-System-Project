@@ -1,8 +1,9 @@
 
 /**
- * The appointment entity
- * <li>Many to one relationship between appointment and student
- * <li>Many to one relationship between appointment and advisor
+ * The studentAccounts entity
+ * This entity represents the balance of student after enrolling into the course.
+ * <li>One to one relationship between studentAccounts and student
+ *
  * 
  * @author Shivangi Patel
  */

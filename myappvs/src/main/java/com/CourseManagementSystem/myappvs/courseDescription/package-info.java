@@ -1,8 +1,10 @@
 
 /**
- * The appointment entity
- * <li>Many to one relationship between appointment and student
- * <li>Many to one relationship between appointment and advisor
+ * The courseDescription entity
+ * This entity has detailed information regarding course which can be accessed after enrolling into the course.
+ *
+ * <li>One to one relationship between courseDescription and courseCatalog
+ * <li>One to one relationship between courseDescription and instructor
  * 
  * @author Shivangi Patel
  */

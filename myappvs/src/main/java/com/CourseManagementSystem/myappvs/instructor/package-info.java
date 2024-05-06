@@ -1,9 +1,8 @@
 
 /**
- * The appointment entity
- * <li>Many to one relationship between appointment and student
- * <li>Many to one relationship between appointment and advisor
- * 
+ * The instructor entity
+ *This entity consist information regarding instructor.
+ *
  * @author Shivangi Patel
  */
 package com.CourseManagementSystem.myappvs.instructor;

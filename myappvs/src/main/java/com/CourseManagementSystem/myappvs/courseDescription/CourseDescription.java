@@ -1,6 +1,8 @@
 package com.CourseManagementSystem.myappvs.courseDescription;
 
+import com.CourseManagementSystem.myappvs.courseCatalog.Catalog;
 import jakarta.persistence.*;
+import lombok.ToString.Exclude;
 
 import java.sql.Time;
 import java.util.Date;
@@ -11,9 +13,17 @@ public class CourseDescription {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "course_id")
-    private long courseId;
+    @Column(unique = true)
+    private long courseDescriptionId;
 
+    @Exclude
+    @OneToOne
+    @JoinColumn(name = "course_id", referencedColumnName = "courseId")
+    private Catalog courseId;
+
+    @Exclude
+    @OneToOne
+    @JoinColumn(name = "instructorId", referencedColumnName = "instructorId")
     private long instructorId;
 
     private String room;
@@ -30,8 +40,8 @@ public class CourseDescription {
         // Default constructor required by Hibernate
     }
 
-    public CourseDescription(long courseId, long instructorId, String room, Date date, Time time, String meetingInfo, String materials){
-        this.courseId = courseId;
+    public CourseDescription(long courseDescriptionId, long instructorId, String room, Date date, Time time, String meetingInfo, String materials){
+        this.courseDescriptionId = courseDescriptionId;
         this.instructorId = instructorId;
         this.room = room;
         this.date = date;
@@ -40,10 +50,10 @@ public class CourseDescription {
         this.materials = materials;
     }
 
-    public long getCourseId() { return courseId; }
+    public long getCourseId() { return courseDescriptionId; }
 
     public void setCourseId(long courseId) {
-        this.courseId = courseId;
+        this.courseDescriptionId = courseId;
     }
 
     public Date getDate() {
