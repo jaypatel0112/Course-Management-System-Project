@@ -9,3 +9,18 @@ CREATE TABLE IF NOT EXISTS Users (
     emailId VARCHAR(255) PRIMARY KEY,
     password VARCHAR(255) NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS Course_Catalog (
+	courseId INT PRIMARY KEY,
+	courseName VARCHAR(100) NOT NULL,
+	Course_Description VARCHAR(255) NOT NULL,
+	Instructor_ID INT NOT NULL,
+	Course_Credits INT 
+);
+
+CREATE TABLE IF NOT EXISTS Enrollment (
+    Enrollment_Id INT PRIMARY KEY,
+    student_id INT NOT NULL,
+    courseId INT NOT NULL
+);
+
