@@ -4,22 +4,14 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 //import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.CourseManagementSystem.myappvs.student.Student;
-import com.CourseManagementSystem.myappvs.student.Studentrepository;
-
-import lombok.extern.slf4j.Slf4j;
-
-import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
-@Slf4j
 public class Login {
 
     @Autowired
@@ -51,7 +43,7 @@ public class Login {
             saveStudent = loginservice.addStudent(student);
 
             // Extract data from the student object to create a user object
-            User user = new User();
+            User user = new User(null, null, saveStudent);
             user.setEmailId(student.getEmailId());
             user.setPassword(student.getUser().getPassword()); // Assuming the password is stored in the student's
                                                                // associated user object

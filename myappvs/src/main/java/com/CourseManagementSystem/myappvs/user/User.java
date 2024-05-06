@@ -8,10 +8,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
+@Data
+@AllArgsConstructor
 @Entity
 @Table(name = "Users")
 public class User {
+
     @Id
     private String emailId; // Primary key
 
@@ -21,29 +26,4 @@ public class User {
     @JoinColumn(name = "studentIdNumber")
     private Student student;
 
-    public String getEmailId() {
-        return emailId;
-    }
-
-    public void setEmailId(String emailId) {
-        this.emailId = emailId;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    // Getter method for the student field
-    public Student getStudent() {
-        return student;
-    }
-
-    // Setter method for the student field
-    public void setStudent(Student student) {
-        this.student = student;
-    }
 }

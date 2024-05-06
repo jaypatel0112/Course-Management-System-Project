@@ -23,6 +23,7 @@ import java.util.List;
 @Entity
 @Table(name = "Students")
 @Data
+@AllArgsConstructor
 public class Student {
 
     @Id
@@ -36,59 +37,5 @@ public class Student {
     private User user;
 
     private String number;
-
-    public Student() {
-    }
-
-    public Student(String name, String emailId, String number, Long studentIdNumber) {
-        this.name = name;
-        this.emailId = emailId;
-        this.number = number;
-        this.studentIdNumber = studentIdNumber;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmailId() {
-        return emailId;
-    }
-
-    public void setEmailId(String emailId) {
-        this.emailId = emailId;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public Long getStudentIdNumber() {
-        return studentIdNumber;
-    }
-
-    public void setStudentIdNumber(String studentIdNumber) {
-        this.studentIdNumber = Long.parseLong(studentIdNumber);
-    }
-
-    public void setStudentIdNumber(Long studentIdNumber) {
-        this.studentIdNumber = studentIdNumber;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
 }
