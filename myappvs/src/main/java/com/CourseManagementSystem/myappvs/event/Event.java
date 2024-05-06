@@ -1,4 +1,4 @@
-package com.CourseManagementSystem.myappvs.Model;
+package com.CourseManagementSystem.myappvs.event;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

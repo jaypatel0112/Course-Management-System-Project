@@ -1,4 +1,4 @@
-package com.CourseManagementSystem.myappvs.Controller;
+package com.CourseManagementSystem.myappvs.event;
 
 import java.util.Date;
 import java.util.List;
@@ -10,10 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.CourseManagementSystem.myappvs.Service.Eventservice;
-import com.CourseManagementSystem.myappvs.Model.Event;
-import com.CourseManagementSystem.myappvs.Repository.Eventrepository;
 
 @RestController
 public class EventController {

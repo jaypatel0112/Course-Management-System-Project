@@ -1,4 +1,4 @@
-package com.CourseManagementSystem.myappvs.Controller;
+package com.CourseManagementSystem.myappvs.user;
 
 import java.util.Optional;
 
@@ -11,10 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 //import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.CourseManagementSystem.myappvs.Model.Student;
-import com.CourseManagementSystem.myappvs.Model.User;
-import com.CourseManagementSystem.myappvs.Repository.Studentrepository;
-import com.CourseManagementSystem.myappvs.Service.Loginservice;
+import com.CourseManagementSystem.myappvs.student.Student;
+import com.CourseManagementSystem.myappvs.student.Studentrepository;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,5 +1,6 @@
-package com.CourseManagementSystem.myappvs.Model;
+package com.CourseManagementSystem.myappvs.student;
 
+import com.CourseManagementSystem.myappvs.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
