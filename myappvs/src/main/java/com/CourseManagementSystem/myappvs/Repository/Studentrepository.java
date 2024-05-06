@@ -1,13 +1,12 @@
-package com.project.myappvs.Repository;
+package com.CourseManagementSystem.myappvs.Repository;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.project.myappvs.Model.Student;
+import com.CourseManagementSystem.myappvs.Model.Student;
+import com.CourseManagementSystem.myappvs.Model.User;
 
 public interface Studentrepository extends JpaRepository<Student, Long> {
-
-    Optional<Student> findByEmailIdAndPassword(String emailId, String password);
 
 }
