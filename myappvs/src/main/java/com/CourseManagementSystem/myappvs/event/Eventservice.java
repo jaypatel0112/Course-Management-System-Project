@@ -1,10 +1,7 @@
-package com.CourseManagementSystem.myappvs.Service;
+package com.CourseManagementSystem.myappvs.event;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
-
-import com.CourseManagementSystem.myappvs.Model.Event;
-import com.CourseManagementSystem.myappvs.Repository.Eventrepository;
 
 import java.util.Date;
 import java.util.List;

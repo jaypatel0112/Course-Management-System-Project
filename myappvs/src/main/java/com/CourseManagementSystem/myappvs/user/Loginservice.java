@@ -1,9 +1,7 @@
-package com.CourseManagementSystem.myappvs.Service;
+package com.CourseManagementSystem.myappvs.user;
 
-import com.CourseManagementSystem.myappvs.Model.Student;
-import com.CourseManagementSystem.myappvs.Model.User;
-import com.CourseManagementSystem.myappvs.Repository.Studentrepository;
-import com.CourseManagementSystem.myappvs.Repository.Userrepository;
+import com.CourseManagementSystem.myappvs.student.Student;
+import com.CourseManagementSystem.myappvs.student.Studentrepository;
 
 import java.util.List;
 import java.util.Optional;
