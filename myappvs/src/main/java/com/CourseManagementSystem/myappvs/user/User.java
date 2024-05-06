@@ -1,4 +1,6 @@
-package com.CourseManagementSystem.myappvs.Model;
+package com.CourseManagementSystem.myappvs.user;
+
+import com.CourseManagementSystem.myappvs.student.Student;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

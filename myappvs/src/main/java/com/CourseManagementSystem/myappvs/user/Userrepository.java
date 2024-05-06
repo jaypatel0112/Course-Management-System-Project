@@ -1,10 +1,8 @@
-package com.CourseManagementSystem.myappvs.Repository;
+package com.CourseManagementSystem.myappvs.user;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.CourseManagementSystem.myappvs.Model.User;
 
 public interface Userrepository extends JpaRepository<User, String> {
 
