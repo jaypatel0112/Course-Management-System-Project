@@ -1,4 +1,4 @@
-package com.practice.myappvs;
+package com.CourseManagementSystem.myappvs;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

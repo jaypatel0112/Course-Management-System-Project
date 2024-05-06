@@ -16,4 +16,7 @@ INSERT INTO Users(emailId, password) VALUES ('CDE@example.com', 'CDE@123');
 INSERT INTO Users(emailId, password) VALUES ('FGH@example.com', 'FGH@123');
 INSERT INTO Users(emailId, password) VALUES ('IJK@example.com', 'IJK@123');
 
-
+-- Insert advisor data
+INSERT INTO advisors(name, email) VALUES ('alice', 'alice@test.com')
+INSERT INTO advisors(name, email) VALUES ('bob', 'bob@test.com')
+INSERT INTO advisors(name, email) VALUES ('charlie', 'charlie@test.com')
