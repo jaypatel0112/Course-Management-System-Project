@@ -19,14 +19,14 @@ public class CourseDescriptionController {
         this.courseDescriptionService = courseDescriptionService;
     }
 
-    @GetMapping("/course-descriptions/{id}")
-    public ResponseEntity<CourseDescription> getCourseDescriptionById(@PathVariable Long id)throws Exception {
-        CourseDescription courseDescription = courseDescriptionService.getCourseDescriptionById(id);
-        if (courseDescription != null) {
-            return new ResponseEntity<CourseDescription>(courseDescription, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<CourseDescription>(HttpStatus.NOT_FOUND);
-        }
-    }
+//    @GetMapping("/course-descriptions/{id}")
+//    public ResponseEntity<CourseDescription> getCourseDescriptionById(@PathVariable Long id)throws Exception {
+//        CourseDescription courseDescription = courseDescriptionService.getCourseDescriptionById(id);
+//        if (courseDescription != null) {
+//            return new ResponseEntity<CourseDescription>(courseDescription, HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<CourseDescription>(HttpStatus.NOT_FOUND);
+//        }
+  //  }
 
 }

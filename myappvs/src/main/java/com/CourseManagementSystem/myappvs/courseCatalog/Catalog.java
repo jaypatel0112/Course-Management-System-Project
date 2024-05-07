@@ -34,7 +34,6 @@ public class Catalog {
 	private String courseDesc;
 	
 	@ManyToOne
-	@Column(name="Instructor_ID")
     @JoinColumn(name = "instructorId", referencedColumnName = "instructorId")
 	private Instructor courseIns;  // Reference to Instructor entity
 	
