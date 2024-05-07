@@ -31,3 +31,10 @@ INSERT INTO Enrollment (Enrollment_Id, student_id, courseId) VALUES (2, 12345678
 INSERT INTO Enrollment (Enrollment_Id, student_id, courseId) VALUES (3, 987654321, 102);
 
 
+-- Insert initial data into the Equipment table
+INSERT INTO inventory (resource_id, resource_name, type, status) VALUES (1, 'Laptop 1', 'Laptop', 'Available');
+INSERT INTO inventory (resource_id, resource_name, type, status) VALUES (2, 'Projector 1', 'Projector', 'Rented');
+
+-- Insert initial data into the Rentals table
+INSERT INTO rentals (allocation_id, class_id, resource_id, allocation_date, return_date) VALUES (1, 101, 2, '2024-04-01', '2024-04-10');
+
