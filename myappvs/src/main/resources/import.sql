@@ -21,6 +21,14 @@ INSERT INTO advisors(name, email) VALUES ('alice', 'alice@test.com')
 INSERT INTO advisors(name, email) VALUES ('bob', 'bob@test.com')
 INSERT INTO advisors(name, email) VALUES ('charlie', 'charlie@test.com')
 
+-- Insert into Catalog table
+INSERT INTO Course_Catalog (courseId, courseName, Course_Description, Course_Instructor, Course_Credits) VALUES (101, 'Database Systems', 'Introduction to Database Design', 21251, 3);
+INSERT INTO Course_Catalog (courseId, courseName, Course_Description, Course_Instructor, Course_Credits) VALUES (102, 'Machine Learning', 'Advanced machine learning concepts', 21351, 4);
+
+-- Insert into Enrollment table
+INSERT INTO Enrollment (Enrollment_Id, student_id, courseId) VALUES (1, 123456789, 101);
+INSERT INTO Enrollment (Enrollment_Id, student_id, courseId) VALUES (2, 123456789, 101);
+INSERT INTO Enrollment (Enrollment_Id, student_id, courseId) VALUES (3, 987654321, 102);
 
 
 -- Insert initial data into the Equipment table
