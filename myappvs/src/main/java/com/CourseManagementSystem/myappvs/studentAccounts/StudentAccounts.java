@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import lombok.ToString.Exclude;
 
 @Entity
-@Table(name = "student_accounts")
+@Table(name = "Student_Accounts")
 public class StudentAccounts {
 
     @Id
