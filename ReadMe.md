@@ -12,27 +12,13 @@ All of these Sections will be Accessible from a HomePage similar to Campus Conne
 
 | Member                               | Area                                 |
 |--------------------------------------|--------------------------------------|
-| Patel Jay Rashmitbhai                | Login/Sign-up                        |
-| Reddy Guntaka Satish Harshavardhan   | Course Search (Catalog)              |
-| Puneeth Talluri                      | Enrolled Courses                     |
-| Patel Shivangi                       |  Course Details,Home Page            |
-| Siddiqui Atif                        | Profile                              |
+| Patel Jay Rashmitbhai                | event, student, user                 |
+| Reddy Guntaka Satish Harshavardhan   | advisor, appointment                 |
+| Puneeth Talluri                      |                                      |
+| Patel Shivangi                       |                                      |
+| Siddiqui Atif                        | Equipment, rental                    |
 
 
-# Conflict Resolution 
-Participate In Zoom Meetings and discord Chat to get a vote on the issue from all team members.
-
-
-# Communication Mechanism
-Will meet using Zoom as per milestone requirements. Mandatory meeting the day next to class, Will decide on atleast another 2 meetings before the Milestone Due Date in this meeting. 
-
-# Decision Table
-
-| # | Area                 | Decision              | Alternative             | Rationale                                                                             |
-|---|----------------------|-----------------------|-------------------------|---------------------------------------------------------------------------------------|
-| 1 | IDE                  | Use VS Code           | IntelliJ, Eclipse       | Language independent editor so that it can be used in non-java course                 |
-| 2 | Dependency Management| Maven                 | Gradle                  | All team members are familiar with the build tool                                     |
-| 3 | ORM                  | JPA, Hibernate        | -                       | Need to implement this for Java Object -> Database Rows and vice versa                |
-| 4 | Database             | H2                    | MySQL                   | Sticking to a RDBMS which meets current requirements. Might pivot to NoSql if data asks for that |
+We have expanded the scope of the project based on the suggestions by professor.
 
 
