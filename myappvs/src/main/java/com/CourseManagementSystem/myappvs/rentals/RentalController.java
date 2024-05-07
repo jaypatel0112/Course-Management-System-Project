@@ -18,5 +18,4 @@ public class RentalController {
         return rentalService.findAllRentals();
     }
 
-    // Additional endpoints as needed
 }

@@ -16,11 +16,11 @@ public class Rental {
     private Long allocationId;
 
     @Column(name = "class_id")
-    private Long classId;  // Assuming rental is linked to a class
+    private Long classId;
 
     @ManyToOne
     @JoinColumn(name = "resource_id", nullable = false)
-    private Equipment equipment;  // Link back to the Equipment entity
+    private Equipment equipment;
 
     @Column(name = "allocation_date", nullable = false)
     private LocalDate allocationDate;

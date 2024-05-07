@@ -13,6 +13,6 @@ public class RentalService {
         return rentalRepository.findAll();
     }
 
-    // Additional methods to handle rental logic
+
 }
 

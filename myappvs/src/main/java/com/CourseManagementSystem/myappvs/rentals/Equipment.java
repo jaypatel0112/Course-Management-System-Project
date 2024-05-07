@@ -23,7 +23,7 @@ import java.util.List;
 public class Equipment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "resource_id") // This ensures the column name is explicitly set
+    @Column(name = "resource_id")
     private Long resourceId;
 
     @Column(name = "resource_name", nullable = false)
@@ -36,6 +36,6 @@ public class Equipment {
     private String status;
 
     @OneToMany(mappedBy = "equipment", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonIgnore  // To avoid infinite recursion in JSON serialization
+    @JsonIgnore
     private List<Rental> rentals;
 }
