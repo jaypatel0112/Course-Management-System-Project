@@ -1,6 +1,7 @@
 package com.CourseManagementSystem.myappvs.courseDescription;
 
 import com.CourseManagementSystem.myappvs.courseCatalog.Catalog;
+import com.CourseManagementSystem.myappvs.instructor.Instructor;
 import jakarta.persistence.*;
 import lombok.ToString.Exclude;
 
@@ -22,9 +23,9 @@ public class CourseDescription {
     private Catalog courseId;
 
     @Exclude
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "instructorId", referencedColumnName = "instructorId")
-    private long instructorId;
+    private Instructor instructorId;
 
     private String room;
 
@@ -40,7 +41,7 @@ public class CourseDescription {
         // Default constructor required by Hibernate
     }
 
-    public CourseDescription(long courseDescriptionId, long instructorId, String room, Date date, Time time, String meetingInfo, String materials){
+    public CourseDescription(long courseDescriptionId, Instructor instructorId, String room, Date date, Time time, String meetingInfo, String materials){
         this.courseDescriptionId = courseDescriptionId;
         this.instructorId = instructorId;
         this.room = room;
@@ -60,7 +61,7 @@ public class CourseDescription {
         return date;
     }
 
-    public long getInstructorId() {
+    public Instructor getInstructorId() {
         return instructorId;
     }
 
@@ -84,7 +85,7 @@ public class CourseDescription {
         this.date = date;
     }
 
-    public void setInstructorId(long instructorId) {
+    public void setInstructorId(Instructor instructorId) {
         this.instructorId = instructorId;
     }
 

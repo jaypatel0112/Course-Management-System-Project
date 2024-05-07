@@ -17,6 +17,7 @@ public class Instructor {
 
     private String instructorName;
 
+
     private String instructorDescription;
 
     private Time meetingHours;
