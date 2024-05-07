@@ -38,4 +38,7 @@ public class Equipment {
     @OneToMany(mappedBy = "equipment", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Rental> rentals;
+
+
+
 }
