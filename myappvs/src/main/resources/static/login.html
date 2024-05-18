@@ -47,6 +47,7 @@
                 // Handle successful login
                 alert("Login successful! " + data);
                 // Redirect or perform further actions here
+                window.location.href = "home.html?emailId=" + formData.emailId;
             })
             .catch(error => {
                 // Handle login error
