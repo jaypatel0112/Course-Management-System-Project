@@ -18,13 +18,13 @@ public class CourseDescriptionService {
     }
 
 
-    public CourseDescription getCourseDescriptionById(Long id) throws Exception {
-        Optional<CourseDescription> optionalCourseDescription = courseDescriptionRepository.findByCourseId(id);
-
-        if(!optionalCourseDescription.isPresent()){
-            throw new Exception("Course with " +id+" does not exist");
-        }
-        return optionalCourseDescription.orElse(null);
-    }
+//    public CourseDescription getCourseDescriptionById(Long id) throws Exception {
+//        Optional<CourseDescription> optionalCourseDescription = courseDescriptionRepository.findByCourseId(id);
+//
+//        if(!optionalCourseDescription.isPresent()){
+//            throw new Exception("Course with " +id+" does not exist");
+//        }
+//        return optionalCourseDescription.orElse(null);
+//    }
 
 }

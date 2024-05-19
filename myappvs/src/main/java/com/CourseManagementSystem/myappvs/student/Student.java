@@ -23,6 +23,7 @@ import java.util.List;
 @Entity
 @Table(name = "Students")
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class Student {
 

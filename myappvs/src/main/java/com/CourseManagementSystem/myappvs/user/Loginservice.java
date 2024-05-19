@@ -42,4 +42,8 @@ public class Loginservice {
         return user;
     }
 
+    public Student getStudentByEmail(String emailId) {
+        return studentRepository.findByEmailId(emailId)
+                .orElseThrow(() -> new RuntimeException("Student not found"));
+    }
 }
