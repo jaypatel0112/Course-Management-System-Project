@@ -37,6 +37,7 @@
     <div class="container">
         <h1>Welcome to Home Page</h1>
         <button id="profile-button" class="button">Go to Profile</button>
+        <button id="rentals-button" class="button">Go to Rentals</button>
     </div>
 
     <script>
@@ -46,6 +47,9 @@
 
             document.getElementById('profile-button').addEventListener('click', function() {
                 window.location.href = `profile.html?emailId=${encodeURIComponent(emailId)}`;
+            });
+                document.getElementById('rentals-button').addEventListener('click', function() {
+                    window.location.href = `rentals.html?emailId=${encodeURIComponent(emailId)}`;
             });
         });
     </script>

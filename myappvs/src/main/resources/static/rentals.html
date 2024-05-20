@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+        }
+        .button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Your Profile</h1>
+    <p id="emailId">Email: </p>
+    <p id="name">Name: </p>
+    <p id="studentIdNumber">Student ID: </p>
+    <p id="number">Phone Number: </p>
+    <button id="home-button" class="button">Back to Home</button>
+</div>
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const queryParams = new URLSearchParams(window.location.search);
+        const emailId = queryParams.get('emailId');
+        fetch('/profile?emailId=' + encodeURIComponent(emailId))
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch profile data');
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById('emailId').textContent += data.emailId;
+                document.getElementById('name').textContent += data.name;
+                document.getElementById('studentIdNumber').textContent += data.studentIdNumber;
+                document.getElementById('number').textContent += data.number;
+            })
+            .catch(error => {
+                console.error('Error fetching profile data:', error);
+            });
+        document.getElementById('home-button').addEventListener('click', function() {
+            window.location.href = `home.html?emailId=${encodeURIComponent(emailId)}`;
+        });
+    });
+</script>
+</body>
+</html>
