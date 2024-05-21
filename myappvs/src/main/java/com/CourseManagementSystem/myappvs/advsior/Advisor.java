@@ -32,6 +32,6 @@ public class Advisor {
     private String email;
 
     @Exclude
-    @OneToMany(mappedBy = "advsior",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "advisor",fetch = FetchType.LAZY)
     private List<Appointment> appointments;
 }

@@ -39,7 +39,7 @@ public class Appointment {
     @Exclude
     @ManyToOne
     @JoinColumn(name = "advisor_id", nullable = false)
-    private Advisor advsior;
+    private Advisor advisor;
 
     @Temporal(TemporalType.DATE)
     private LocalDate appointmentDate;
