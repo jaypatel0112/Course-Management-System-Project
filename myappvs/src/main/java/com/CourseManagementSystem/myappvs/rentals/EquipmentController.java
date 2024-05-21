@@ -18,5 +18,4 @@ public class EquipmentController {
         model.addAttribute("inventoryList", equipmentService.findAllEquipment());
         return "inventory";
     }
-
 }

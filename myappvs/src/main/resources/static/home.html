@@ -53,20 +53,6 @@
             });
         });
     </script>
-    <div class="container">
-        <button id="student-accounts-button" class="button">Student Accounts</button>
-    </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const queryParams = new URLSearchParams(window.location.search);
-            const studentId = queryParams.get('studentIdNumber');
-
-            document.getElementById('student-accounts-button').addEventListener('click', function() {
-                window.location.href = `studentAccounts.html?id=${encodeURIComponent(studentId)}`;
-            });
-        });
-    </script>
 </body>
 </html>
 

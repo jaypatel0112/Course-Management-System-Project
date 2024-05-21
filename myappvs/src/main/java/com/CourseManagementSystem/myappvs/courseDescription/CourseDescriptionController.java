@@ -1,30 +1,32 @@
 package com.CourseManagementSystem.myappvs.courseDescription;
 
-import com.CourseManagementSystem.myappvs.courseCatalog.Catalog;
+import com.CourseManagementSystem.myappvs.courseDescription.CourseDescription;
 import com.CourseManagementSystem.myappvs.courseDescription.CourseDescriptionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/coursedescription")
 public class CourseDescriptionController {
 
-    private com.CourseManagementSystem.myappvs.courseDescription.CourseDescriptionService courseDescriptionService;
+    @Autowired
+    private CourseDescriptionService courseDescriptionService;
 
-    public CourseDescriptionController(CourseDescriptionService courseDescriptionService) {
+    public CourseDescriptionController(CourseDescriptionService courseDescriptionService){
         this.courseDescriptionService = courseDescriptionService;
     }
 
-    //Get CourseDetails Rest Api
-    @GetMapping("/{id}")
-    public ResponseEntity<CourseDescriptionDto> getCourseDescriptionbyId(@PathVariable Long id){
+//    @GetMapping("/course-descriptions/{id}")
+//    public ResponseEntity<CourseDescription> getCourseDescriptionById(@PathVariable Long id)throws Exception {
+//        CourseDescription courseDescription = courseDescriptionService.getCourseDescriptionById(id);
+//        if (courseDescription != null) {
+//            return new ResponseEntity<CourseDescription>(courseDescription, HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<CourseDescription>(HttpStatus.NOT_FOUND);
+//        }
+  //  }
 
-    try {
-        CourseDescriptionDto courseDescriptionDto = courseDescriptionService.getCourseDetail(id);
-        return ResponseEntity.ok(courseDescriptionDto);
-    } catch (RuntimeException e) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null); // Return 404 Not Found
-    }
-}
 }

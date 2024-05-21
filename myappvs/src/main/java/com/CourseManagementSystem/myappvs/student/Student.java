@@ -32,7 +32,6 @@ public class Student {
     private Long studentIdNumber;
     private String name;
 
-    @Column(unique = true)
     private String emailId;
 
     @OneToOne(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
