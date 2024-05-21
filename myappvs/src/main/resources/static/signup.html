@@ -63,8 +63,9 @@
             })
             .then(data => {
                 // Handle successful signup
-                alert("Signup successful! " + data);
+                alert("Signup successful! ");
                 // Redirect or perform further actions here
+                window.location.href = "login.html";
             })
             .catch(error => {
                 // Handle signup error

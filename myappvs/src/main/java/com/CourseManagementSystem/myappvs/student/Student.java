@@ -23,6 +23,7 @@ import java.util.List;
 @Entity
 @Table(name = "Students")
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class Student {
 
@@ -31,6 +32,7 @@ public class Student {
     private Long studentIdNumber;
     private String name;
 
+    @Column(unique = true)
     private String emailId;
 
     @OneToOne(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
