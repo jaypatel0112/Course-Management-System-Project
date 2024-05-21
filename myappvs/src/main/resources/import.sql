@@ -41,16 +41,6 @@ INSERT INTO Course_Description(courseDescriptionId, courseId, instructorId, room
 INSERT INTO Course_Description(courseDescriptionId, courseId, instructorId, room, date, time, meetingInfo, materials) VALUES (2, 102, 202, 'Room B', '2024-05-12', '14:00:00', 'Advanced Database Management', 'Textbook, Exercises');
 INSERT INTO Course_Description(courseDescriptionId, courseId, instructorId, room, date, time, meetingInfo, materials) VALUES (3, 103, 203, 'Room C', '2024-05-15', '11:00:00', 'Machine Learning Fundamentals', 'Online Resources');
 
--- Insert into Student Account table
-INSERT INTO Student_Accounts(studentAccountsId, student_id, balance) VALUES (1, 101, 100.00);
-INSERT INTO Student_Accounts(studentAccountsId, student_id, balance) VALUES (2, 102, 200.00);
-INSERT INTO Student_Accounts(studentAccountsId, student_id, balance) VALUES (3, 103, 150.00);
-
-
--- Insert into Course Description table
-INSERT INTO Course_Description(courseDescriptionId, courseId, instructorId, room, date, time, meetingInfo, materials) VALUES (1, 101, 201, 'Room A', '2024-05-10', '09:00:00', 'Introduction to Programming', 'Lecture Slides');
-INSERT INTO Course_Description(courseDescriptionId, courseId, instructorId, room, date, time, meetingInfo, materials) VALUES (2, 102, 202, 'Room B', '2024-05-12', '14:00:00', 'Advanced Database Management', 'Textbook, Exercises');
-INSERT INTO Course_Description(courseDescriptionId, courseId, instructorId, room, date, time, meetingInfo, materials) VALUES (3, 103, 203, 'Room C', '2024-05-15', '11:00:00', 'Machine Learning Fundamentals', 'Online Resources');
 
 -- Insert into Student Account table
 INSERT INTO Student_Accounts(studentAccountsId, student_id, balance) VALUES (1, 101, 100.00);
