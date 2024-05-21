@@ -1,4 +1,8 @@
-# COURSE_MANAGEMENT_SYSTEM
+# COURSE_MANAGEMENT_SYSTEM Milestone 3
+Added service and UI layer to the application.
+
+Decided to use Google's Java [style guidelines](https://google.github.io/styleguide/javaguide.html).
+
 The objective of the Project is to develop an Application which is similar to D2L. Major sections of this App would be:
 1. Login / Sign-up, Events
 2. Course Catalog and Enrollment Section
