@@ -16,7 +16,7 @@ public class EquipmentService {
     private EquipmentRepository equipmentRepository;
 
     public List<Equipment> findAllEquipment() {
-        return null;
+        return equipmentRepository.findAll();
     }
 
 
