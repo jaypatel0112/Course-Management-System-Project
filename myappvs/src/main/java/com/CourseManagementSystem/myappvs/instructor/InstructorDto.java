@@ -1,24 +1,14 @@
 package com.CourseManagementSystem.myappvs.instructor;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Time;
-
-@Entity
-@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Instructor")
-public class Instructor {
-
-    @Id
-    @Column(unique = true)
+@Data
+public class InstructorDto {
     private long instructorId;
 
     private String instructorName;
@@ -29,5 +19,4 @@ public class Instructor {
     private Time meetingHours;
 
     private String instructorCabinLocation;
-
 }
