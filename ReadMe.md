@@ -1,3 +1,5 @@
+Please Login using ABC@example.com and password: AB@123 if you do not want to sign-up.
+
 # COURSE_MANAGEMENT_SYSTEM
 The objective of the Project is to develop an Application which is similar to D2L. Major sections of this App would be:
 1. Login / Sign-up, Events

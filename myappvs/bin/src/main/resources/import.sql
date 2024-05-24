@@ -8,31 +8,32 @@ INSERT INTO students(student_id_number, name, email_id, number) VALUES (98765432
 INSERT INTO students(student_id_number, name, email_id, number) VALUES (114365567, 'FGH', 'FGH@example.com', '2235679043');
 INSERT INTO students(student_id_number, name, email_id, number) VALUES (978563412, 'IJK', 'IJK@example.com', '2247864538');
 
-INSERT INTO users(student_id_number, email_id, password) VALUES (123456789, 'ABC@example.com', 'ABC@123');
-
--- Insert into instructor table
-INSERT INTO instructor(instructor_id, instructor_name, instructor_description, meeting_hours, instructor_cabin_location) VALUES (201, 'John Doe', 'Experienced software engineer', '08:00:00', 'Building A, Room 101');
-INSERT INTO instructor(instructor_id, instructor_name, instructor_description, meeting_hours, instructor_cabin_location) VALUES (202, 'Alice Smith', 'Data science expert', '10:00:00', 'Building B, Room 201');
-INSERT INTO instructor(instructor_id, instructor_name, instructor_description, meeting_hours, instructor_cabin_location) VALUES (203, 'David Brown', 'Network security specialist', '13:00:00', 'Building C, Room 301');
 
 
+-- Insert user data
+INSERT INTO users(emailId, password) VALUES ('ABC@example.com', 'ABC@123');
+INSERT INTO Users(emailId, password) VALUES ('CDE@example.com', 'CDE@123');
+INSERT INTO Users(emailId, password) VALUES ('FGH@example.com', 'FGH@123');
+INSERT INTO Users(emailId, password) VALUES ('IJK@example.com', 'IJK@123');
 
 -- Insert advisor data
 INSERT INTO advisors(name, email) VALUES ('alice', 'alice@test.com')
 INSERT INTO advisors(name, email) VALUES ('bob', 'bob@test.com')
 INSERT INTO advisors(name, email) VALUES ('charlie', 'charlie@test.com')
 
+
+-- Insert into Enrollment table
+INSERT INTO Enrollment(Enrollment_Id, student_id, courseId) VALUES (1, 123456789, 101);
+INSERT INTO Enrollment(Enrollment_Id, student_id, courseId) VALUES (2, 123456789, 101);
+INSERT INTO Enrollment(Enrollment_Id, student_id, courseId) VALUES (3, 987654321, 102);
+
+-- Insert into instructor table
+INSERT INTO instructor(instructor_id, instructor_name, instructor_description, meeting_hours, instructor_cabin_location) VALUES (201, 'John Doe', 'Experienced software engineer', '08:00:00', 'Building A, Room 101');
+INSERT INTO instructor(instructor_id, instructor_name, instructor_description, meeting_hours, instructor_cabin_location) VALUES (202, 'Alice Smith', 'Data science expert', '10:00:00', 'Building B, Room 201');
+INSERT INTO instructor(instructor_id, instructor_name, instructor_description, meeting_hours, instructor_cabin_location) VALUES (203, 'David Brown', 'Network security specialist', '13:00:00', 'Building C, Room 301');
 -- Insert into Catalog table
 INSERT INTO course_catalog(course_id, course_name, course_description, instructor_id, course_credits) VALUES (101, 'Database Systems', 'Introduction to Database Design', 201, 3);
 INSERT INTO course_catalog(course_id, course_name, course_description, instructor_id, course_credits) VALUES (102, 'Machine Learning', 'Advanced machine learning concepts', 202, 4);
-INSERT INTO course_catalog(course_id, course_name, course_description, instructor_id, course_credits) VALUES (103, 'Deep Learning', 'Advanced Deep learning concepts', 203, 4);
-
-
--- Insert into Enrollment table
-INSERT INTO enrollment(enrollment_id, student_id, course_id) VALUES (1, 123456789, 101);
-INSERT INTO enrollment(enrollment_id, student_id, course_id) VALUES (2, 123456789, 102);
-INSERT INTO enrollment(enrollment_id, student_id, course_id) VALUES (3, 987654321, 103);
-
 
 -- Insert into Course Description table
 INSERT INTO course_description(course_description_id, course_id, instructor_id, room, date, time, meeting_info, materials) VALUES (1, 101, 201, 'Room A', '2024-05-10', '09:00:00', 'Introduction to Programming', 'Lecture Slides');

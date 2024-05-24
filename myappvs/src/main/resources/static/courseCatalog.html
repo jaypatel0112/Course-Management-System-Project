@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Catalog</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Course Catalog</h1>
+    <table id="coursesTable">
+        <thead>
+            <tr>
+                <th>Course ID</th>
+                <th>Course Name</th>
+                <th>Description</th>
+                <th>Instructor</th>
+                <th>Credits</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+   <script>
+fetch('http://localhost:8585/getCourses' + window.location.search)  // Include emailId query param in request
+.then(response => response.json())
+.then(data => {
+    const table = document.getElementById('coursesTable').getElementsByTagName('tbody')[0];
+    data.forEach(course => {
+        let row = table.insertRow();
+        let cell1 = row.insertCell(0);
+        let cell2 = row.insertCell(1);
+        let cell3 = row.insertCell(2);
+        let cell4 = row.insertCell(3);
+        let cell5 = row.insertCell(4);
+        let cell6 = row.insertCell(5);  // Cell for enroll button
+
+        cell1.innerHTML = course.courseId;
+        cell2.innerHTML = course.courseName;
+        cell3.innerHTML = course.courseDesc;
+        cell4.innerHTML = `${course.courseIns.instructorName} (${course.courseIns.instructorDescription})`;
+        cell5.innerHTML = course.courseCredits;
+        cell6.innerHTML = '<button onClick="enrollCourse(' + course.courseId + ')">Enroll</button>';
+    });
+})
+.catch(error => console.error('Error fetching data:', error));
+
+function enrollCourse(courseId) {
+    const emailId = new URLSearchParams(window.location.search).get('emailId');
+    fetch('http://localhost:8585/enrollCourse', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `emailId=${encodeURIComponent(emailId)}&courseId=${courseId}`
+    })
+    .then(response => response.json())
+    .then(data => alert('Enrollment successful'))
+    .catch(error => alert('Error enrolling in course: ' + error));
+}
+</script>
+
+</body>
+</html>

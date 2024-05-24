@@ -39,5 +39,14 @@ public class Student {
     private User user;
 
     private String number;
+    
+    @Override
+    public String toString() {
+        return "Student{" +
+               "studentIdNumber=" + studentIdNumber +
+               ", emailId='" + emailId ;  // Only print user ID
+               
+    }
+
 
 }

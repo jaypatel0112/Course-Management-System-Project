@@ -37,7 +37,6 @@
     <div class="container">
         <h1>Welcome to Home Page</h1>
         <button id="profile-button" class="button">Go to Profile</button>
-        <button id="course-catalog" class="button">Go to Course Catalog</button>
     </div>
 
     <script>
@@ -61,16 +60,6 @@
 
             document.getElementById('student-accounts-button').addEventListener('click', function() {
                 window.location.href = `studentAccounts.html?id=${encodeURIComponent(studentId)}`;
-            });
-        });
-    </script>
-       <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const queryParams = new URLSearchParams(window.location.search);
-            const emailId = queryParams.get('emailId');
-
-            document.getElementById('course-catalog').addEventListener('click', function() {
-                window.location.href = `courseCatalog.html?emailId=${encodeURIComponent(emailId)}`;
             });
         });
     </script>
