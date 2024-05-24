@@ -1,3 +1,4 @@
+Use *Email:* ABC@example.com and *password:* ABC@123 if you do not want to sign-up
 # COURSE_MANAGEMENT_SYSTEM Milestone 3
 Added service and UI layer to the application.
 
