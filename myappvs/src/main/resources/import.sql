@@ -34,19 +34,6 @@ INSERT INTO Enrollment(Enrollment_Id, student_id, courseId) VALUES (3, 987654321
 INSERT INTO Instructor(instructorId, instructorName, instructorDescription, meetingHours, instructorCabinLocation) VALUES (1, 'John Doe', 'Experienced software engineer', '08:00:00', 'Building A, Room 101');
 INSERT INTO Instructor(instructorId, instructorName, instructorDescription, meetingHours, instructorCabinLocation) VALUES (2, 'Alice Smith', 'Data science expert', '10:00:00', 'Building B, Room 201');
 INSERT INTO Instructor(instructorId, instructorName, instructorDescription, meetingHours, instructorCabinLocation) VALUES (3, 'David Brown', 'Network security specialist', '13:00:00', 'Building C, Room 301');
-<<<<<<< HEAD
-
--- Insert into Course Description table
-INSERT INTO Course_Description(courseDescriptionId, courseId, instructorId, room, date, time, meetingInfo, materials) VALUES (1, 101, 201, 'Room A', '2024-05-10', '09:00:00', 'Introduction to Programming', 'Lecture Slides');
-INSERT INTO Course_Description(courseDescriptionId, courseId, instructorId, room, date, time, meetingInfo, materials) VALUES (2, 102, 202, 'Room B', '2024-05-12', '14:00:00', 'Advanced Database Management', 'Textbook, Exercises');
-INSERT INTO Course_Description(courseDescriptionId, courseId, instructorId, room, date, time, meetingInfo, materials) VALUES (3, 103, 203, 'Room C', '2024-05-15', '11:00:00', 'Machine Learning Fundamentals', 'Online Resources');
-
--- Insert into Student Account table
-INSERT INTO Student_Accounts(studentAccountsId, student_id, balance) VALUES (1, 101, 100.00);
-INSERT INTO Student_Accounts(studentAccountsId, student_id, balance) VALUES (2, 102, 200.00);
-INSERT INTO Student_Accounts(studentAccountsId, student_id, balance) VALUES (3, 103, 150.00);
-=======
->>>>>>> 7edd643e4dd18d7ce64a63d06fd9d7397b842a80
 
 -- Insert into Course Description table
 INSERT INTO Course_Description(courseDescriptionId, courseId, instructorId, room, date, time, meetingInfo, materials) VALUES (1, 101, 201, 'Room A', '2024-05-10', '09:00:00', 'Introduction to Programming', 'Lecture Slides');

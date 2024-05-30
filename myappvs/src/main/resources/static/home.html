@@ -5,15 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
+        /* Your existing styles */
         .container {
             text-align: center;
         }
@@ -35,8 +27,10 @@
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to Home Page</h1>
+        <h1>Welcome to the Home Page</h1>
         <button id="profile-button" class="button">Go to Profile</button>
+        <button id="events-button" class="button">Events</button>
+        <button id="logout-button" class="button">Logout</button>
     </div>
 
     <script>
@@ -47,8 +41,16 @@
             document.getElementById('profile-button').addEventListener('click', function() {
                 window.location.href = `profile.html?emailId=${encodeURIComponent(emailId)}`;
             });
+
+            document.getElementById('events-button').addEventListener('click', function() {
+                window.location.href = `events.html?emailId=${encodeURIComponent(emailId)}`;
+            });
+
+            document.getElementById('logout-button').addEventListener('click', function() {
+                localStorage.removeItem('emailId');
+                window.location.href = 'login.html';
+            });
         });
     </script>
 </body>
 </html>
-
