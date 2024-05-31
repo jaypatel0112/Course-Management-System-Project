@@ -53,8 +53,59 @@
                 events.forEach(event => {
                     var li = document.createElement('li');
                     li.textContent = `${event.date} - ${event.eventName} - Organized by: ${event.organizerName}`;
+                    
+                    // Create delete button
+                    var deleteButton = document.createElement('button');
+                    deleteButton.textContent = 'Delete';
+                    deleteButton.onclick = function() {
+                        deleteEvent(event.id);
+                    };
+                    li.appendChild(deleteButton);
+
+                    // Create update button
+                    var updateButton = document.createElement('button');
+                    updateButton.textContent = 'Update';
+                    updateButton.onclick = function() {
+                        updateEvent(event.id);
+                    };
+                    li.appendChild(updateButton);
+
                     eventsList.appendChild(li);
                 });
+            }
+
+            function deleteEvent(eventId) {
+                if (confirm('Are you sure you want to delete this event?')) {
+                    axios.delete(`/events/${eventId}`)
+                        .then(function (response) {
+                            alert('Event deleted!');
+                            // Refresh events list after deletion
+                            fetchEvents(document.getElementById('eventDate').value);
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                }
+            }
+
+            function updateEvent(eventId) {
+                var newEventName = prompt('Enter the new event name:');
+                var newEventDate = prompt('Enter the new event date (YYYY-MM-DD):');
+
+                if (newEventName && newEventDate) {
+                    axios.put(`/events/${eventId}`, {
+                        eventName: newEventName,
+                        date: newEventDate
+                    })
+                    .then(function (response) {
+                        alert('Event updated!');
+                        // Refresh events list after update
+                        fetchEvents(document.getElementById('eventDate').value);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                }
             }
 
             document.getElementById('saveEvent').addEventListener('click', function () {
