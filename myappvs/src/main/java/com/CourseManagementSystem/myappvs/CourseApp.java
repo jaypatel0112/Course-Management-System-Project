@@ -37,7 +37,7 @@ import com.CourseManagementSystem.myappvs.user.Userrepository;
 @SpringBootApplication(scanBasePackages = {
 		"com.CourseManagementSystem.myappvs.event.EventController",
 		"com.CourseManagementSystem.myappvs.event.Eventrepository" })
-@EnableMongoRepositories(basePackageClasses = Userrepository.class)
+@EnableMongoRepositories("com.CourseManagementSystem.myappvs.event")
 @EnableJpaRepositories(excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = Eventrepo.class))
 
 @ComponentScan("com.CourseManagementSystem.myappvs")

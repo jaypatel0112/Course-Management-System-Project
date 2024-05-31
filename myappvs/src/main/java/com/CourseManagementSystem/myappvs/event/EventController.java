@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 public class EventController {
 
-    // @Autowired
+    @Autowired
     private Eventrepo eventRepository;
 
     @GetMapping("/events/{date}")
