@@ -3,19 +3,14 @@ package com.CourseManagementSystem.myappvs.event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
-public class Eventservice {
+public interface Eventservice {
+    List<Event> getEventsByDate(LocalDate date);
 
-    private Eventrepo eventRepository;
+    Event createEvent(Event event);
 
-    @Autowired
-    public Event saveEvent(Event event) {
-        return eventRepository.save(event);
-    }
-
-    public List<Event> getEventsByDate(String date) {
-        return eventRepository.findByDate(date);
-    }
+    List<Event> getAllEvents();
 }

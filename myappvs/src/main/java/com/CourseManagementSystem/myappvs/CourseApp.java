@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
-//import org.springframework.scheduling.annotation.EnableScheduling;
+// import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -14,7 +14,29 @@ import org.springframework.context.annotation.FilterType;
 import com.CourseManagementSystem.myappvs.event.Eventrepo;
 import com.CourseManagementSystem.myappvs.user.Userrepository;
 
-@SpringBootApplication
+/*
+ * @SpringBootApplication(scanBasePackages = {
+ * "com.CourseManagementSystem.myappvs.event.EventController",
+ * "com.CourseManagementSystem.myappvs.event.Eventrepository" })
+ * 
+ * @EnableMongoRepositories("com.CourseManagementSystem.myappvs.event")
+ * 
+ * @EnableJpaRepositories(excludeFilters = @ComponentScan.Filter(type =
+ * FilterType.ASSIGNABLE_TYPE, value = Eventrepository.class))
+ * 
+ * @ComponentScan("com.CourseManagementSystem.myappvs")
+ * public class CourseApp {
+ * 
+ * public static void main(String[] args) {
+ * SpringApplication.run(CourseApp.class, args);
+ * System.out.println("Started...");
+ * }
+ * 
+ * }
+ */
+@SpringBootApplication(scanBasePackages = {
+		"com.CourseManagementSystem.myappvs.event.EventController",
+		"com.CourseManagementSystem.myappvs.event.Eventrepository" })
 @EnableMongoRepositories(basePackageClasses = Userrepository.class)
 @EnableJpaRepositories(excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = Eventrepo.class))
 

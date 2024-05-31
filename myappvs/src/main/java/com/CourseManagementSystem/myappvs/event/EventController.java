@@ -5,30 +5,29 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping("/events")
 public class EventController {
-    @Autowired
-    private Eventservice eventService;
 
-    @PostMapping
-    public Event createEvent(@RequestBody Event event) {
-        return eventService.saveEvent(event);
+    // @Autowired
+    private Eventrepo eventRepository;
+
+    @GetMapping("/events/{date}")
+    public List<Event> getEventsByDate(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+        return eventRepository.findByDate(date);
     }
 
-    @GetMapping("/{date}")
-    public List<Event> getEventsByDate(@PathVariable String date) {
-        return eventService.getEventsByDate(date);
+    @PostMapping("/events")
+    public Event createEvent(@RequestBody Event event) {
+        return eventRepository.save(event);
+    }
+
+    @GetMapping("/events")
+    public List<Event> getAllEvents() {
+        return eventRepository.findAll();
     }
 }

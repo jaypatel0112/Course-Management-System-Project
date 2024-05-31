@@ -1,11 +1,11 @@
 package com.CourseManagementSystem.myappvs.event;
 
+import com.CourseManagementSystem.myappvs.event.Event;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 public interface Eventrepo extends MongoRepository<Event, String> {
-    List<Event> findByDate(String date);
+    List<Event> findByDate(LocalDate date);
 }
