@@ -1,7 +1,3 @@
-
-
-
-
 -- Insert student data
 INSERT INTO students(student_id_number, name, email_id, number) VALUES (123456789, 'ABC', 'ABC@example.com', '2246387532');
 INSERT INTO students(student_id_number, name, email_id, number) VALUES (987654321, 'CDE', 'CDE@example.com', '2257865437');
@@ -57,4 +53,3 @@ INSERT INTO inventory(resource_id, resource_name, type, status) VALUES (2, 'Proj
 
 -- Insert initial data into the Rentals table
 INSERT INTO rentals (allocation_id, class_id, resource_id, allocation_date, return_date) VALUES (1, 101, 2, '2024-04-01', '2024-04-10');
-

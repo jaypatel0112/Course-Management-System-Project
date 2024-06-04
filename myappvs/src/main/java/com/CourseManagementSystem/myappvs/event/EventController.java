@@ -1,8 +1,10 @@
 package com.CourseManagementSystem.myappvs.event;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,25 +20,36 @@ public class EventController {
 
     // Get events by date
     @GetMapping("/{date}")
-    public List<Event> getEventsByDate(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+    public List<Event> getEventsByDate(@PathVariable LocalDate date) {
         return eventRepository.findByDate(date);
     }
 
     // Create a new event
     @PostMapping
     public Event createEvent(@Validated @RequestBody Event event) {
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        event.setEmailId(userDetails.getUsername()); // Set the emailId from the authenticated user
         return eventRepository.save(event);
     }
 
     // Update an event
     @PutMapping("/{id}")
-    public ResponseEntity<Event> updateEvent(@PathVariable String id, @Validated @RequestBody Event eventDetails) {
+    public ResponseEntity<?> updateEvent(@PathVariable String id, @Validated @RequestBody Event eventDetails) {
         Event event = eventRepository.findById(id)
-                .orElseThrow();
+                .orElseThrow(() -> new IllegalArgumentException("Event not found"));
+
+        /*
+         * if (!event.getEmailId().equals(emailId)) {
+         * System.out.println(emailId + "URL Email");
+         * System.out.println(event.getEmailId());
+         * return ResponseEntity.status(HttpStatus.FORBIDDEN)
+         * .body("You are not authorized to update this event. This event is not hosted by you."
+         * );
+         * }
+         */
 
         event.setDate(eventDetails.getDate());
         event.setEventName(eventDetails.getEventName());
-        event.setOrganizerName(eventDetails.getOrganizerName());
 
         final Event updatedEvent = eventRepository.save(event);
         return ResponseEntity.ok(updatedEvent);

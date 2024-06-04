@@ -15,7 +15,6 @@ import lombok.ToString;
 @NoArgsConstructor
 public class StudentAccountDto {
 
-
     private Long studentAccountsId;
 
     private Student studentId;

@@ -33,25 +33,6 @@
         <button id="logout-button" class="button">Logout</button>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const queryParams = new URLSearchParams(window.location.search);
-            const emailId = queryParams.get('emailId');
-
-            document.getElementById('profile-button').addEventListener('click', function() {
-                window.location.href = `profile.html?emailId=${encodeURIComponent(emailId)}`;
-            });
-
-            document.getElementById('events-button').addEventListener('click', function() {
-                window.location.href = `events.html?emailId=${encodeURIComponent(emailId)}`;
-            });
-
-            document.getElementById('logout-button').addEventListener('click', function() {
-                localStorage.removeItem('emailId');
-                window.location.href = 'login.html';
-            });
-        });
-    </script>
     <div class="container">
         <button id="student-accounts-button" class="button">Student Accounts</button>
         <button id="rentals-button" class="button">Rental Equipment Center</button>
@@ -59,15 +40,35 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const queryParams = new URLSearchParams(window.location.search);
-            const studentId = queryParams.get('studentIdNumber');
+            const token = localStorage.getItem('token');
+            if (!token) {
+                // Redirect to login page if token is not present
+                window.location.href = 'login.html';
+            }
+
+            document.getElementById('profile-button').addEventListener('click', function() {
+                window.location.href = 'profile.html';
+            });
+
+            document.getElementById('events-button').addEventListener('click', function() {
+                window.location.href = 'events.html';
+            });
 
             document.getElementById('student-accounts-button').addEventListener('click', function() {
-                window.location.href = `studentAccounts.html?id=${encodeURIComponent(studentId)}`;
+                window.location.href = 'studentAccounts.html';
             });
+
             document.getElementById('rentals-button').addEventListener('click', function() {
-                window.location.href = `rentals.html?emailId=${encodeURIComponent(studentId)}`;
+                window.location.href = 'rentals.html';
             });
+
+            document.getElementById("logout-button").addEventListener("click", function() {
+            // Remove the token from local storage
+            localStorage.removeItem('token');
+
+            // Redirect the user to the login page or any other appropriate action
+            window.location.href = "login.html";
+        });
         });
     </script>
 </body>

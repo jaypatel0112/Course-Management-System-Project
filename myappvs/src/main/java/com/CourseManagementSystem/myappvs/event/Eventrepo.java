@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface Eventrepo extends MongoRepository<Event, String> {
     List<Event> findByDate(LocalDate date);
+
 }

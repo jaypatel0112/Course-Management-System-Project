@@ -4,68 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup Page</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <h2>Signup</h2>
-    <form id="signup-form">
-        <div>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-        </div>
-        <div>
-            <label for="emailId">Email:</label>
-            <input type="email" id="emailId" name="emailId" required>
-        </div>
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-        </div>
-        <div>
-            <label for="number">Phone Number:</label>
-            <input type="text" id="number" name="number" required>
-        </div>
-        <div>
-            <label for="number">Student ID Number:</label>
-            <input type="text" id="studentIdNumber" name="studentIdNumber" required>
-        </div>
-        <button type="submit">Signup</button>
-    </form>
+    <div class="container">
+        <h2>Signup</h2>
+        <form id="signup-form" method="POST">
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div>
+                <label for="emailId">Email:</label>
+                <input type="email" id="emailId" name="emailId" required>
+                <span id="email-error" class="error"></span>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div>
+                <label for="number">Phone Number:</label>
+                <input type="text" id="number" name="number" required>
+            </div>
+            <div>
+                <label for="studentIdNumber">Student ID Number:</label>
+                <input type="text" id="studentIdNumber" name="studentIdNumber" required>
+                <span id="student-id-error" class="error"></span>
+            </div>
+            <button type="submit">Signup</button>
+        </form>
+    </div>
 
     <script>
-        document.getElementById("signup-form").addEventListener("submit", function(event) {
+        document.getElementById("signup-form").addEventListener("submit", async function(event) {
             event.preventDefault(); // Prevent form submission
+            
+            // Clear previous error messages
+            document.getElementById("email-error").textContent = "";
+            document.getElementById("student-id-error").textContent = "";
 
+            // Check if email and student ID are unique
+            const email = document.getElementById("emailId").value;
+            const studentId = document.getElementById("studentIdNumber").value;
+            const emailExists = await checkEmailExists(email);
+            const studentIdExists = await checkStudentIdExists(studentId);
+
+            if (emailExists) {
+                document.getElementById("email-error").textContent = "Email already exists";
+                return;
+            }
+            if (studentIdExists) {
+                document.getElementById("student-id-error").textContent = "Student ID exist in our records";
+                return;
+            }
+
+            // If both email is unique and student ID exists, proceed with signup
             var formData = {
                 name: document.getElementById("name").value,
-                emailId: document.getElementById("emailId").value,
+                emailId: email,
                 password: document.getElementById("password").value,
-                number: document.getElementById("number").value,
-                studentIdNumber:document.getElementById("studentIdNumber").value,
-                user: {
-                    emailId: document.getElementById("emailId").value, // Use the same email for both user and student
-                    password: document.getElementById("password").value
-                }
+                studentIdNumber: studentId,
+                number: document.getElementById("number").value
             };
 
-            fetch('/signup', {
+            fetch('/api/v1/auth/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formData)
             })
-            .then(response => {
-                if (response.ok) {
-                    return response.text();
+            .then(response => response.json())
+            .then(data => {
+                if (data.token) {
+                    // Handle successful signup and store JWT token
+                    localStorage.setItem('token', data.token);
+                    alert("Signup successful!");
+
+                    // Redirect or perform further actions here
+                    window.location.href = "login.html";
                 } else {
                     throw new Error('Signup failed.');
                 }
-            })
-            .then(data => {
-                // Handle successful signup
-                alert("Signup successful! ");
-                // Redirect or perform further actions here
-                window.location.href = "login.html";
             })
             .catch(error => {
                 // Handle signup error
@@ -73,6 +94,18 @@
                 console.error('Error:', error);
             });
         });
+
+        async function checkEmailExists(email) {
+            const response = await fetch(`/api/v1/auth/check-email?email=${encodeURIComponent(email)}`);
+            const data = await response.json();
+            return data.exists;
+        }
+
+        async function checkStudentIdExists(studentId) {
+            const response = await fetch(`/api/v1/auth/check-student-id?studentId=${encodeURIComponent(studentId)}`);
+            const data = await response.json();
+            return data.exists;
+        }
     </script>
 </body>
 </html>

@@ -2,10 +2,25 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Event Calendar</title>
-    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css' rel='stylesheet' />
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        #home-bar {
+            display: flex;
+            align-items: center;
+        }
+        #home-bar button {
+            margin-left: 10px;
+        }
+        #calendar {
+            width: 60%;
+        }
         .button {
             margin-top: 20px;
             padding: 10px 20px;
@@ -23,8 +38,13 @@
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const queryParams = new URLSearchParams(window.location.search);
-            const emailId = queryParams.get('emailId');
+            const token = localStorage.getItem('token');
+            if (!token) {
+                // Redirect to login page if token is not present
+                window.location.href = 'login.html';
+            }
+
+            const authHeader = { headers: { Authorization: `Bearer ${token}` } };
 
             var calendarEl = document.getElementById('calendar');
 
@@ -38,7 +58,7 @@
             calendar.render();
 
             function fetchEvents(date) {
-                axios.get('/events/' + date)
+                axios.get(`/events/${date}`, authHeader)
                     .then(function (response) {
                         displayEvents(response.data);
                     })
@@ -53,7 +73,7 @@
                 events.forEach(event => {
                     var li = document.createElement('li');
                     li.textContent = `${event.date} - ${event.eventName} - Organized by: ${event.organizerName}`;
-                    
+
                     // Create delete button
                     var deleteButton = document.createElement('button');
                     deleteButton.textContent = 'Delete';
@@ -74,13 +94,15 @@
                 });
             }
 
-            function deleteEvent(eventId) {
+            function deleteEvent(eventId, emailId) {
                 if (confirm('Are you sure you want to delete this event?')) {
-                    axios.delete(`/events/${eventId}`)
+                    axios.delete(`/events/${eventId}?emailId=${encodeURIComponent(emailId)}`, authHeader)
                         .then(function (response) {
                             alert('Event deleted!');
                             // Refresh events list after deletion
                             fetchEvents(document.getElementById('eventDate').value);
+                            // Navigate to the current date
+                            calendar.gotoDate(new Date());
                         })
                         .catch(function (error) {
                             console.log(error);
@@ -88,19 +110,21 @@
                 }
             }
 
-            function updateEvent(eventId) {
+            function updateEvent(eventId, emailId) {
                 var newEventName = prompt('Enter the new event name:');
                 var newEventDate = prompt('Enter the new event date (YYYY-MM-DD):');
 
                 if (newEventName && newEventDate) {
-                    axios.put(`/events/${eventId}`, {
+                    axios.put(`/events/${eventId}?emailId=${encodeURIComponent(emailId)}`, {
                         eventName: newEventName,
                         date: newEventDate
-                    })
+                    }, authHeader)
                     .then(function (response) {
                         alert('Event updated!');
                         // Refresh events list after update
                         fetchEvents(document.getElementById('eventDate').value);
+                        // Navigate to the current date
+                        calendar.gotoDate(new Date());
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -113,11 +137,11 @@
                 var eventName = document.getElementById('eventName').value;
                 var organizerName = document.getElementById('organizerName').value;
 
-                axios.post('/events', {
+                axios.post(`/events`, {
                     date: date,
                     eventName: eventName,
                     organizerName: organizerName
-                })
+                }, authHeader)
                 .then(function (response) {
                     alert('Event saved!');
                     fetchEvents(date);
@@ -128,28 +152,33 @@
             });
 
             document.getElementById('home-button').addEventListener('click', function() {
-                window.location.href = `index.html?emailId=${encodeURIComponent(emailId)}`;
+                window.location.href = 'home.html';
             });
         });
     </script>
 </head>
 <body>
-    <h1>Event Calendar</h1>
-    <div id='calendar'></div>
-    <h2>Events</h2>
-    <ul id="eventsList"></ul>
-    <h2>Save New Event</h2>
-    <label for="eventDate">Date:</label>
-    <input type="date" id="eventDate" />
-    <br />
-    <label for="eventName">Event Name:</label>
-    <input type="text" id="eventName" />
-    <br />
-    <label for="organizerName">Organizer Name:</label>
-    <input type="text" id="organizerName" />
-    <br />
-    <button id="saveEvent" class="button">Save Event</button>
-    <br />
-    <button id="home-button" class="button">Home</button>
+    <div id="home-bar">
+        <h1>Event Calendar</h1>
+        <button id="home-button" class="button">Home</button>
+    </div>
+    <div class='container'>
+        <div id='calendar'></div>
+        <div>
+            <h2>Events</h2>
+            <ul id="eventsList"></ul>
+            <h2>Save New Event</h2>
+            <label for="eventDate">Date:</label>
+            <input type="date" id="eventDate" />
+            <br />
+            <label for="eventName">Event Name:</label>
+            <input type="text" id="eventName" />
+            <br />
+            <label for="organizerName">Organizer Name:</label>
+            <input type="text" id="organizerName" />
+            <br />
+            <button id="saveEvent" class="button">Save Event</button>
+        </div>
+    </div>
 </body>
 </html>

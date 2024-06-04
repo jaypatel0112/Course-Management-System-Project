@@ -7,7 +7,7 @@
 </head>
 <body>
     <h2>Login</h2>
-    <form id="login-form">
+    <form id="login-form" method="POST">
         <div>
             <label for="emailId">Email:</label>
             <input type="email" id="emailId" name="emailId" required>
@@ -17,8 +17,10 @@
             <input type="password" id="password" name="password" required>
         </div>
         <button type="submit">Login</button>
-        <a href="signup.html">Don't have an account? Wanna a Signup</a>
     </form>
+
+    <!-- Sign Up link -->
+    <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
 
     <script>
         document.getElementById("login-form").addEventListener("submit", function(event) {
@@ -26,32 +28,32 @@
 
             var formData = {
                 emailId: document.getElementById("emailId").value,
-                password: document.getElementById("password").value
+                password: document.getElementById("password").value,
             };
 
-            fetch('/login', {
+            fetch('http://localhost:8585/api/v1/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formData)
             })
-            .then(response => {
-                if (response.ok) {
-                    return response.text();
+            .then(response => response.json())
+            .then(data => {
+                if (data.token) {
+                    // Handle successful login and store JWT token
+                    localStorage.setItem('token', data.token);
+                    alert("Login successful!");
+
+                    // Redirect to home.html
+                    window.location.href = "home.html";
                 } else {
                     throw new Error('Login failed.');
                 }
             })
-            .then(data => {
-                // Handle successful login
-                alert("Login successful! " + data);
-                // Redirect or perform further actions here
-                window.location.href = "home.html?emailId=" + formData.emailId;
-            })
             .catch(error => {
                 // Handle login error
-                alert("Login failed. Please check your credentials.");
+                alert("Login failed. Please try again.");
                 console.error('Error:', error);
             });
         });

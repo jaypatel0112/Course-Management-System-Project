@@ -1,6 +1,5 @@
 package com.CourseManagementSystem.myappvs.studentAccounts;
 
-
 import com.CourseManagementSystem.myappvs.student.Student;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,7 +12,7 @@ import lombok.ToString.Exclude;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "Student_Accounts")
-public class StudentAccounts{
+public class StudentAccounts {
 
     @Id
     @Column(unique = true)
@@ -24,10 +23,6 @@ public class StudentAccounts{
     @JoinColumn(name = "student_id", referencedColumnName = "studentIdNumber")
     private Student studentId;
 
-
     private double balance;
-
-
-
 
 }

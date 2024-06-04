@@ -2,48 +2,54 @@ package com.CourseManagementSystem.myappvs.user;
 
 import com.CourseManagementSystem.myappvs.student.Student;
 import com.CourseManagementSystem.myappvs.student.Studentrepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-//import java.util.Optional;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-@Component
+@Service
 public class Loginservice {
 
     @Autowired
     private Studentrepository studentRepository;
 
     @Autowired
-    private Userrepository userRepository;
+    private PasswordEncoder passwordEncoder;
 
-    public Loginservice(Studentrepository studentRepository) {
+    @Autowired
+    private Userserviceimpl userService;
+
+    public Loginservice(Studentrepository studentRepository,
+            PasswordEncoder passwordEncoder, Userserviceimpl userService) {
         this.studentRepository = studentRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.userService = userService;
     }
 
-    /*
-     * public List<Student> getStudents() {
-     * return studentRepository.findAll();
-     * }
-     */
-
-    public String login(User user) throws Exception {
-        User existingUser = userRepository.findByEmailIdAndPassword(user.getEmailId(), user.getPassword())
+    public String login(Student student) throws Exception {
+        Student existingUser = studentRepository.findByEmailId(student.getEmailId())
                 .orElseThrow(() -> new Exception("Invalid credentials"));
+        if (!passwordEncoder.matches(student.getPassword(), existingUser.getPassword())) {
+            throw new Exception("Invalid credentials");
+        }
         return existingUser.getStudent().getName();
     }
 
     public Student addStudent(Student student) {
-        studentRepository.save(student);
-        return student;
+        return studentRepository.save(student);
     }
 
-    public User addUser(User user) {
-        userRepository.save(user);
-        return user;
+    public Student addUser(Student student) {
+        student.setPassword(passwordEncoder.encode(student.getPassword()));
+        return studentRepository.save(student);
     }
 
     public Student getStudentByEmail(String emailId) {
         return studentRepository.findByEmailId(emailId)
                 .orElseThrow(() -> new RuntimeException("Student not found"));
+    }
+
+    public UserDetailsService userDetailsService() {
+        return (UserDetailsService) userService; // Return the Userserviceimpl directly
     }
 }

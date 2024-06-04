@@ -20,6 +20,7 @@ public class Event {
     private LocalDate date;
     private String eventName;
     private String organizerName;
+    private String emailId;
 
     // Getters and Setters
 }
