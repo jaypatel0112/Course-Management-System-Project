@@ -12,12 +12,23 @@ import org.springframework.stereotype.Component;
 
 @Service
 public class EquipmentService {
-    @Autowired
-    private EquipmentRepository equipmentRepository;
 
-    public List<Equipment> findAllEquipment() {
-        return equipmentRepository.findAll();
+        @Autowired
+        private EquipmentRepository equipmentRepository;
+
+        public List<Equipment> findAll() {
+            return equipmentRepository.findAll();
+        }
+
+        public Optional<Equipment> findById(Long id) {
+            return equipmentRepository.findById(id);
+        }
+
+        public Equipment save(Equipment equipment) {
+            return equipmentRepository.save(equipment);
+        }
+
+        public void deleteById(Long id) {
+            equipmentRepository.deleteById(id);
+        }
     }
-
-
-}

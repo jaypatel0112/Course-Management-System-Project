@@ -27,5 +27,7 @@ public class Rental {
 
     @Column(name = "return_date")
     private LocalDate returnDate;
+
+    private String userEmail;
 }
 
