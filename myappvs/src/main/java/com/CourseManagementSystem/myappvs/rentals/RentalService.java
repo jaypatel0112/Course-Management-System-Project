@@ -56,10 +56,12 @@ public class RentalService {
     public void deleteRentalById(Long id) {
         rentalRepository.deleteById(id);
     }
-}
 
     public List<Rental> findAllRentals() {
         return rentalRepository.findAll();
     }
 }
+
+
+
 

@@ -47,22 +47,10 @@ INSERT INTO student_accounts(student_accounts_id, student_id, balance) VALUES (3
 
 
 -- Insert initial data into the Inventory table
-INSERT INTO inventory(resource_id, resource_name, type, status, max_quantity, available_quantity) VALUES (1, 'Laptop 1', 'Laptop', 'Available', 10, 10);
-INSERT INTO inventory(resource_id, resource_name, type, status, max_quantity, available_quantity) VALUES (2, 'Projector 1', 'Projector', 'Rented', 5, 4);
-INSERT INTO inventory(resource_id, resource_name, type, status, max_quantity, available_quantity) VALUES (3, 'Laptop 2', 'Laptop', 'Available', 8, 8);
-INSERT INTO inventory(resource_id, resource_name, type, status, max_quantity, available_quantity) VALUES (4, 'Tablet 1', 'Tablet', 'Available', 7, 7);
-INSERT INTO inventory(resource_id, resource_name, type, status, max_quantity, available_quantity) VALUES (5, 'Projector 2', 'Projector', 'Available', 6, 6);
-INSERT INTO inventory(resource_id, resource_name, type, status, max_quantity, available_quantity) VALUES (6, 'Camera 1', 'Camera', 'Rented', 3, 2);
-INSERT INTO inventory(resource_id, resource_name, type, status, max_quantity, available_quantity) VALUES (7, 'Microphone 1', 'Microphone', 'Available', 12, 12);
-INSERT INTO inventory(resource_id, resource_name, type, status, max_quantity, available_quantity) VALUES (8, 'Laptop 3', 'Laptop', 'Under Maintenance', 9, 9);
-INSERT INTO inventory(resource_id, resource_name, type, status, max_quantity, available_quantity) VALUES (9, 'Projector 3', 'Projector', 'Available', 4, 4);
-INSERT INTO inventory(resource_id, resource_name, type, status, max_quantity, available_quantity) VALUES (10, 'Tablet 2', 'Tablet', 'Rented', 5, 4);
+INSERT INTO inventory (resource_id, resource_name, type, status, max_quantity, available_quantity) VALUES (1, 'Laptop', 'Electronics', 'Available', 10, 10);
+INSERT INTO inventory (resource_id, resource_name, type, status, max_quantity, available_quantity) VALUES (2, 'Projector', 'Electronics', 'Available', 5, 5);
+INSERT INTO inventory (resource_id, resource_name, type, status, max_quantity, available_quantity) VALUES (3, 'Microphone', 'Audio', 'Available', 15, 15);
 
 -- Insert initial data into the Rentals table
-INSERT INTO rentals (allocation_id, class_id, resource_id, allocation_date, return_date) VALUES (1, 101, 2, '2024-04-01', '2024-04-10');
-INSERT INTO rentals (allocation_id, class_id, resource_id, allocation_date, return_date) VALUES (2, 102, 4, '2024-04-05', '2024-04-12');
-INSERT INTO rentals (allocation_id, class_id, resource_id, allocation_date, return_date) VALUES (3, 103, 6, '2024-04-07', '2024-04-14');
-INSERT INTO rentals (allocation_id, class_id, resource_id, allocation_date, return_date) VALUES (4, 104, 10, '2024-04-10', '2024-04-17');
-INSERT INTO rentals (allocation_id, class_id, resource_id, allocation_date, return_date) VALUES (5, 105, 5, '2024-04-12', '2024-04-19');
-INSERT INTO rentals (allocation_id, class_id, resource_id, allocation_date, return_date) VALUES (6, 106, 1, '2024-04-15', '2024-04-20');
-INSERT INTO rentals (allocation_id, class_id, resource_id, allocation_date, return_date) VALUES (7, 107, 9, '2024-04-18', '2024-04-25');
+INSERT INTO rental (id, equipment_id, user_email, rental_date, return_date) VALUES (1, 2, 'user1@example.com', '2024-04-01', '2024-04-10');
+INSERT INTO rental (id, equipment_id, user_email, rental_date, return_date) VALUES (2, 1, 'user2@example.com', '2024-04-05', '2024-04-15');
