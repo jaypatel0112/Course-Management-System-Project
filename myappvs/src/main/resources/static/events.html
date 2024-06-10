@@ -94,9 +94,9 @@
                 });
             }
 
-            function deleteEvent(eventId, emailId) {
+            function deleteEvent(eventId) {
                 if (confirm('Are you sure you want to delete this event?')) {
-                    axios.delete(`/events/${eventId}?emailId=${encodeURIComponent(emailId)}`, authHeader)
+                    axios.delete(`/events/${eventId}`, authHeader)
                         .then(function (response) {
                             alert('Event deleted!');
                             // Refresh events list after deletion
@@ -105,17 +105,22 @@
                             calendar.gotoDate(new Date());
                         })
                         .catch(function (error) {
-                            console.log(error);
+                            if (error.response && error.response.status === 403) {
+                                alert(error.response.data); // Show authorization error message
+                            } else {
+                                console.log(error);
+                            }
                         });
                 }
             }
+
 
             function updateEvent(eventId, emailId) {
                 var newEventName = prompt('Enter the new event name:');
                 var newEventDate = prompt('Enter the new event date (YYYY-MM-DD):');
 
                 if (newEventName && newEventDate) {
-                    axios.put(`/events/${eventId}?emailId=${encodeURIComponent(emailId)}`, {
+                    axios.put(`/events/${eventId }?emailId=${encodeURIComponent(emailId)}`, {
                         eventName: newEventName,
                         date: newEventDate
                     }, authHeader)
@@ -127,7 +132,11 @@
                         calendar.gotoDate(new Date());
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        if (error.response && error.response.status === 403) {
+                            alert(error.response.data); // Show authorization error message
+                        } else {
+                            console.log(error);
+                        }
                     });
                 }
             }
