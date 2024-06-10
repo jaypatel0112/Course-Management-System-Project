@@ -28,7 +28,7 @@ public class EquipmentController {
         return "inventory";
     }
 
-    @PostMapping("/rent")
+    @PostMapping(value = "/rent", consumes = "application/json")
     public ResponseEntity<String> rentEquipment(@RequestBody RentalRequest request) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.isAuthenticated()) {

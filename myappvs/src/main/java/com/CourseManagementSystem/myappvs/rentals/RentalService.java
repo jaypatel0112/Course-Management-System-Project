@@ -7,14 +7,24 @@ import java.util.List;
 import java.util.Optional;
 import java.time.LocalDate;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RentalService {
-    @Autowired
-    private EquipmentRepository equipmentRepository;
 
     @Autowired
     private RentalRepository rentalRepository;
+
+    @Autowired
+    private EquipmentRepository equipmentRepository;
 
     @Transactional
     public String rentEquipment(String userEmail, Long equipmentId, LocalDate rentalDate, LocalDate returnDate) {
@@ -61,6 +71,7 @@ public class RentalService {
         return rentalRepository.findAll();
     }
 }
+
 
 
 
