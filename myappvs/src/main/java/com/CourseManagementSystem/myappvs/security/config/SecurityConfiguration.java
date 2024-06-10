@@ -41,6 +41,8 @@ public class SecurityConfiguration {
                                                 .permitAll()
                                                 .requestMatchers("/**")
                                                 .permitAll()
+                                                .requestMatchers("/index.html")
+                                                .permitAll()
                                                 .anyRequest()
                                                 .authenticated())
                                 .sessionManagement(management -> management
