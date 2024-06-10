@@ -12,13 +12,17 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.context.annotation.FilterType;
+
+import com.CourseManagementSystem.myappvs.Notes.StudentNoteRepository;
 import com.CourseManagementSystem.myappvs.event.Eventrepo;
 
 @SpringBootApplication(scanBasePackages = {
 		"com.CourseManagementSystem.myappvs.event.EventController",
-		"com.CourseManagementSystem.myappvs.event.Eventrepository" })
-@EnableMongoRepositories("com.CourseManagementSystem.myappvs.event")
-@EnableJpaRepositories(excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = Eventrepo.class))
+		"com.CourseManagementSystem.myappvs.event.Eventrepository",
+		"com.CourseManagementSystem.myappvs.Notes.StudentNoteController",
+		"com.CourseManagementSystem.myappvs.Notes.StudentNoteRepository"})
+@EnableMongoRepositories({"com.CourseManagementSystem.myappvs.event", "com.CourseManagementSystem.myappvs.Notes"})
+@EnableJpaRepositories(excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = { Eventrepo.class, StudentNoteRepository.class}))
 
 @ComponentScan("com.CourseManagementSystem.myappvs")
 public class CourseApp {

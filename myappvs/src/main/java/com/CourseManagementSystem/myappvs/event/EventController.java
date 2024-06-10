@@ -35,17 +35,18 @@ public class EventController {
     // Update an event
     @PutMapping("/{id}")
     public ResponseEntity<?> updateEvent(@PathVariable String id, @Validated @RequestBody Event eventDetails) {
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String authenticatedUserEmail = userDetails.getUsername();
-
         Event event = eventRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Event not found"));
 
-        // Check if the authenticated user is the owner of the event
-        if (!event.getEmailId().equals(authenticatedUserEmail)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN)
-                    .body("You are not authorized to update this event. This event is not hosted by you.");
-        }
+        /*
+         * if (!event.getEmailId().equals(emailId)) {
+         * System.out.println(emailId + "URL Email");
+         * System.out.println(event.getEmailId());
+         * return ResponseEntity.status(HttpStatus.FORBIDDEN)
+         * .body("You are not authorized to update this event. This event is not hosted by you."
+         * );
+         * }
+         */
 
         event.setDate(eventDetails.getDate());
         event.setEventName(eventDetails.getEventName());
@@ -57,17 +58,8 @@ public class EventController {
     // Delete an event
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteEvent(@PathVariable String id) {
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String authenticatedUserEmail = userDetails.getUsername();
-
         Event event = eventRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Event not found"));
-
-        // Check if the authenticated user is the owner of the event
-        if (!event.getEmailId().equals(authenticatedUserEmail)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN)
-                    .body("You are not authorized to delete this event. This event is not hosted by you.");
-        }
+                .orElseThrow();
 
         eventRepository.delete(event);
         return ResponseEntity.ok().build();
