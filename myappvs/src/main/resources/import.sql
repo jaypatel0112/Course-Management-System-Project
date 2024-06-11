@@ -21,10 +21,10 @@ INSERT INTO advisors(name, email) VALUES ('bob', 'bob@test.com')
 INSERT INTO advisors(name, email) VALUES ('charlie', 'charlie@test.com')
 
 
--- Insert into Enrollment table
-INSERT INTO Enrollment(Enrollment_Id, student_id, courseId) VALUES (1, 123456789, 101);
-INSERT INTO Enrollment(Enrollment_Id, student_id, courseId) VALUES (2, 123456789, 101);
-INSERT INTO Enrollment(Enrollment_Id, student_id, courseId) VALUES (3, 987654321, 102);
+---- Insert into Enrollment table
+--INSERT INTO Enrollment(Enrollment_Id, student_id, courseId) VALUES (1, 123456789, 101);
+--INSERT INTO Enrollment(Enrollment_Id, student_id, courseId) VALUES (2, 123456789, 101);
+--INSERT INTO Enrollment(Enrollment_Id, student_id, courseId) VALUES (3, 987654321, 102);
 
 -- Insert into instructor table
 INSERT INTO instructor(instructor_id, instructor_name, instructor_description, meeting_hours, instructor_cabin_location) VALUES (201, 'John Doe', 'Experienced software engineer', '08:00:00', 'Building A, Room 101');
