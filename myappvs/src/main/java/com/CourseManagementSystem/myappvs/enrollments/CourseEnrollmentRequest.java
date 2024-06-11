@@ -1,4 +1,4 @@
-package com.CourseManagementSystem.myappvs.courseCatalog;
+package com.CourseManagementSystem.myappvs.enrollments;
 
 public class CourseEnrollmentRequest {
     private String courseId;
