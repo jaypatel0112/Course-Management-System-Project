@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.CourseManagementSystem.myappvs.advisor.Advisor;
-import com.CourseManagementSystem.myappvs.advisor.AdvisorRepository;
+import com.CourseManagementSystem.myappvs.advsior.Advisor;
+import com.CourseManagementSystem.myappvs.advsior.AdvisorRepository;
 
 @SpringBootTest
 public class AdvisorRepositoryTest {
@@ -23,11 +23,11 @@ public class AdvisorRepositoryTest {
         Long repoCountBefore = advisorRepository.count();
         
         advisorRepository.save(advisorDoe);
-        Long advisorDoeId = advisorDoe.getAdvisorId();
+        Long advisorDoeId = advisorDoe.getId();
         assertEquals(repoCountBefore+1, advisorRepository.count());
 
         Advisor advisor = advisorRepository.findById(advisorDoeId).orElse(new Advisor());
-        assertEquals(advisorDoeId, advisor.getAdvisorId());
+        assertEquals(advisorDoeId, advisor.getId());
 
         advisorRepository.delete(advisorDoe);
         assertEquals(repoCountBefore, advisorRepository.count());

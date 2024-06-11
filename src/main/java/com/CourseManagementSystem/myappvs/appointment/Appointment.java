@@ -1,13 +1,13 @@
 package com.CourseManagementSystem.myappvs.appointment;
 
-import com.CourseManagementSystem.myappvs.advisor.Advisor;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+import com.CourseManagementSystem.myappvs.advsior.Advisor;
 import com.CourseManagementSystem.myappvs.student.Student;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,18 +17,11 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString.Exclude;
 
-@Builder
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
-@Getter @Setter
 @Entity
 @Table(name = "appointments")
 public class Appointment {
@@ -39,21 +32,20 @@ public class Appointment {
     private long id;
 
     @Exclude
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "student_id", referencedColumnName = "studentIdNumber")
     private Student student;
     
     @Exclude
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "advisorId", referencedColumnName = "advisorId")
-    @JsonManagedReference
+    @ManyToOne
+    @JoinColumn(name = "advisor_id", nullable = false)
     private Advisor advisor;
 
     @Temporal(TemporalType.DATE)
-    private String appointmentDate;
+    private LocalDate appointmentDate;
 
     @Temporal(TemporalType.TIME)
-    private String appointmentTime;
+    private LocalTime appointmentTime;
 
     private String appointmentNote;
 }
