@@ -7,13 +7,16 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.time.LocalDate;
 import java.util.List;
 
 @Controller
 @RequestMapping("/inventory")
 public class EquipmentController {
+    private static final Logger logger = LoggerFactory.getLogger(EquipmentService.class);
+
 
     @Autowired
     private EquipmentService equipmentService;
@@ -67,15 +70,21 @@ public class EquipmentController {
 
     @PostMapping("/add")
     public ResponseEntity<Equipment> addEquipment(@RequestBody Equipment equipment) {
+        logger.info("Creating Equipment");
         Equipment newEquipment = equipmentService.save(equipment);
+        logger.info("Created Equipment");
         return new ResponseEntity<>(newEquipment, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Equipment> getEquipmentById(@PathVariable Long id) {
+        logger.info("Received request to get equipment with id: {}", id);
+
         Equipment equipment = equipmentService.findById(id).orElse(null);
         if (equipment != null) {
+            logger.info("Sending response for equipment with id: {}", id);
             return new ResponseEntity<>(equipment, HttpStatus.OK);
+
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -83,7 +92,9 @@ public class EquipmentController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteEquipment(@PathVariable Long id) {
+        logger.info("Received request to delete equipment with id: {}", id);
         equipmentService.deleteById(id);
+        logger.info("Deleted equipment with id: {}", id);
         return ResponseEntity.ok().build();
     }
 }
