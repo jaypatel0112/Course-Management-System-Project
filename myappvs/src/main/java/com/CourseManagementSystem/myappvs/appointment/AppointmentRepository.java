@@ -9,8 +9,11 @@ import com.CourseManagementSystem.myappvs.student.Student;
 
 public interface AppointmentRepository extends CrudRepository<Appointment, Long> {
     
-    List<Appointment> findAllByAdvsior(Advisor advsior);
+    List<Appointment> findAllByAdvisor(Advisor advisor);
 
     List<Appointment> findAllByStudent(Student student);
 
+    // List<Appointment> findByStudentId(long studentId);
+
+    List<Appointment> findByAdvisorId(long id);
 }

@@ -1,11 +1,16 @@
 package com.CourseManagementSystem.myappvs.studentAccounts;
 
-
 import com.CourseManagementSystem.myappvs.student.Student;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString.Exclude;
 
 @Entity
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "Student_Accounts")
 public class StudentAccounts {
 
@@ -16,43 +21,8 @@ public class StudentAccounts {
     @Exclude
     @OneToOne
     @JoinColumn(name = "student_id", referencedColumnName = "studentIdNumber")
-    private Student student;
-
+    private Student studentId;
 
     private double balance;
 
-
-    public StudentAccounts(){
-
-    }
-
-    public StudentAccounts(long studentAccountsId, Student student, double balance){
-        this.studentAccountsId = studentAccountsId;
-        this.student = student;
-        this.balance = balance;
-    }
-
-    public void setStudentId(Student student) {
-        this.student = student;
-    }
-
-    public long getStudentAccountsId() {
-        return studentAccountsId;
-    }
-
-    public void setStudentAccountsId(long studentAccountsId) {
-        this.studentAccountsId = studentAccountsId;
-    }
-
-    public Student getStudent() {
-        return student;
-    }
-
-    public double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
 }
