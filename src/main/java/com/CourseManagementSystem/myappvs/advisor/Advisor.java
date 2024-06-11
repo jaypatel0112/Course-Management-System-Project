@@ -3,7 +3,6 @@ package com.CourseManagementSystem.myappvs.advisor;
 
 import com.CourseManagementSystem.myappvs.appointment.Appointment;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.List;
 

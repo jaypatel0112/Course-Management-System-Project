@@ -13,9 +13,9 @@ INSERT INTO students(student_id_number, name, email_id, number,role, password) V
 --INSERT INTO Users(emailId, password) VALUES ('IJK@example.com', 'IJK@123');
 
 -- Insert advisor data
-INSERT INTO advisors(name, email) VALUES ('alice', 'alice@test.com')
-INSERT INTO advisors(name, email) VALUES ('bob', 'bob@test.com')
-INSERT INTO advisors(name, email) VALUES ('charlie', 'charlie@test.com')
+INSERT INTO advisors(advisor_id, name, email) VALUES (10101, 'alice', 'alice@test.com')
+INSERT INTO advisors(advisor_id, name, email) VALUES (11235, 'bob', 'bob@test.com')
+INSERT INTO advisors(advisor_id, name, email) VALUES (12312, 'charlie', 'charlie@test.com')
 
 
 ---- Insert into Enrollment table
