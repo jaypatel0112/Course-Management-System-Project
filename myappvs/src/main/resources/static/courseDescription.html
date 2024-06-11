@@ -42,6 +42,17 @@
         p {
             margin: 10px 0;
         }
+        .project-form {
+            margin-top: 20px;
+        }
+        .project-form input[type="text"] {
+            padding: 10px;
+            margin-right: 10px;
+            width: calc(100% - 140px);
+        }
+        .project-form button {
+            padding: 10px 20px;
+        }
     </style>
 </head>
 <body>
@@ -50,7 +61,6 @@
         <a href="http://localhost:8585/home.html">Home</a>
         <a href="http://localhost:8585/enrollments.html">Enrollments</a>
         <button id="discussionButton">Discussion Forum</button>
-
     </div>
     <div id="welcomeMessage">
         Welcome, User
@@ -60,72 +70,122 @@
 <div id="courseDetails">
     <!-- Course details will be displayed here -->
 </div>
+<div class="project-form">
+    <input type="text" id="projectTopic" placeholder="Enter project topic" />
+    <button id="submitProjectButton">Submit</button>
+    <button id="deleteProjectButton">Delete</button>
+</div>
 
 <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                window.location.href = 'login.html';
-            }
+    document.addEventListener("DOMContentLoaded", function() {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = 'login.html';
+        }
 
-            // Fetch user name
-            fetch('http://localhost:8585/getName', {
+        // Fetch user name
+        fetch('http://localhost:8585/getName', {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        })
+        .then(response => response.text())
+        .then(name => {
+            document.getElementById('welcomeMessage').innerText = `Welcome, ${name}`;
+        })
+        .catch(error => console.error('Error fetching user name:', error));
+
+        // Get the course ID from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const courseId = urlParams.get('courseId'); // Assuming the course ID is passed as a query parameter
+
+        document.getElementById('discussionButton').addEventListener('click', function() {
+            window.location.href = `http://localhost:8585/discussion.html?courseId=${courseId}`;
+        });
+
+        // Fetch course details from the API
+        fetchCourseDetails();
+
+        function fetchCourseDetails() {
+            // Fetch data from your API
+            fetch(`/api/coursedescription/${courseId}`, {
                 headers: {
                     'Authorization': 'Bearer ' + token
                 }
             })
-            .then(response => response.text())
-            .then(name => {
-                document.getElementById('welcomeMessage').innerText = `Welcome, ${name}`;
+            .then(response => response.json())
+            .then(data => {
+                // Extract relevant information from the response
+                const courseId = data.courseId.courseId;
+                const courseName = data.courseId.courseName;
+                const courseDesc = data.courseId.courseDesc;
+                const instructorName = data.courseId.courseIns.instructorName;
+                const room = data.room;
+                const date = new Date(data.date).toDateString(); // Convert date to a human-readable format
+                const time = data.time;
+                const meetingInfo = data.meetingInfo;
+                const materials = data.materials;
+
+                // Update the HTML with course details
+                document.getElementById('courseDetails').innerHTML = `
+                    <p><strong>Course ID:</strong> ${courseId}</p>
+                    <p><strong>Course Name:</strong> ${courseName}</p>
+                    <p><strong>Course Description:</strong> ${courseDesc}</p>
+                    <p><strong>Instructor:</strong> ${instructorName}</p>
+                    <p><strong>Room:</strong> ${room}</p>
+                    <p><strong>Date:</strong> ${date}</p>
+                    <p><strong>Time:</strong> ${time}</p>
+                    <p><strong>Meeting Info:</strong> ${meetingInfo}</p>
+                    <p><strong>Materials:</strong> ${materials}</p>
+                `;
             })
-            .catch(error => console.error('Error fetching user name:', error));
+            .catch(error => console.error('Error fetching course details:', error));
+        }
 
-            // Get the course ID from the URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const courseId = urlParams.get('courseId'); // Assuming the course ID is passed as a query parameter
-
-             document.getElementById('discussionButton').addEventListener('click', function() {
-            window.location.href = `http://localhost:8585/discussion.html?courseId=${courseId}`;
-        });
-            // Fetch course details from the API
-            fetchCourseDetails();
-
-            function fetchCourseDetails() {
-                // Fetch data from your API
-                fetch(`/api/coursedescription/${courseId}`, {
+        document.getElementById('submitProjectButton').addEventListener('click', function() {
+            const projectTopic = document.getElementById('projectTopic').value;
+            if (projectTopic) {
+                // Submit project topic to the server
+                fetch(`/api/submitProjectTopic/${courseId}`, {
+                    method: 'POST',
                     headers: {
-                        'Authorization': 'Bearer ' + token
-                    }
+                        'Authorization': 'Bearer ' + token,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ projectTopic })
                 })
                 .then(response => response.json())
                 .then(data => {
-                    // Extract relevant information from the response
-                    const courseId = data.courseId.courseId;
-                    const courseName = data.courseId.courseName;
-                    const courseDesc = data.courseId.courseDesc;
-                    const instructorName = data.courseId.courseIns.instructorName;
-                    const room = data.room;
-                    const date = new Date(data.date).toDateString(); // Convert date to a human-readable format
-                    const time = data.time;
-                    const meetingInfo = data.meetingInfo;
-                    const materials = data.materials;
-
-                    // Update the HTML with course details
-                    document.getElementById('courseDetails').innerHTML = `
-                        <p><strong>Course ID:</strong> ${courseId}</p>
-                        <p><strong>Course Name:</strong> ${courseName}</p>
-                        <p><strong>Course Description:</strong> ${courseDesc}</p>
-                        <p><strong>Instructor:</strong> ${instructorName}</p>
-                        <p><strong>Room:</strong> ${room}</p>
-                        <p><strong>Date:</strong> ${date}</p>
-                        <p><strong>Time:</strong> ${time}</p>
-                        <p><strong>Meeting Info:</strong> ${meetingInfo}</p>
-                        <p><strong>Materials:</strong> ${materials}</p>
-                    `;
+                    alert('Project topic submitted successfully!');
                 })
-                .catch(error => console.error('Error fetching course details:', error));
+                .catch(error => console.error('Error submitting project topic:', error));
+            } else {
+                alert('Please enter a project topic.');
             }
         });
-    </script>
+
+        document.getElementById('deleteProjectButton').addEventListener('click', function() {
+            const projectTopic = document.getElementById('projectTopic').value;
+            if (projectTopic) {
+                // Delete project topic on the server
+                fetch(`/api/deleteProjectTopic/${courseId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': 'Bearer ' + token,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ projectTopic })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert('Project topic deleted successfully!');
+                })
+                .catch(error => console.error('Error deleting project topic:', error));
+            } else {
+                alert('Please enter a project topic to delete.');
+            }
+        });
+    });
+</script>
 </body>
 </html>

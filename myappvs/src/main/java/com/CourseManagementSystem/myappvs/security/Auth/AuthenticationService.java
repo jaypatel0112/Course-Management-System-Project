@@ -6,6 +6,7 @@ import com.CourseManagementSystem.myappvs.security.Controller.Registerrequest;
 import com.CourseManagementSystem.myappvs.security.Service.Jwtservice;
 import com.CourseManagementSystem.myappvs.student.Student;
 import com.CourseManagementSystem.myappvs.student.Studentrepository;
+import com.CourseManagementSystem.myappvs.studentAccounts.StudentAccountService;
 import com.CourseManagementSystem.myappvs.user.Role;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class AuthenticationService {
 
         @Autowired
         private final Studentrepository srepository;
-
+        private  final StudentAccountService studentAccountService;
         @Autowired
         private final PasswordEncoder passwordEncoder;
         @Autowired
@@ -48,6 +49,7 @@ public class AuthenticationService {
                  * urepository.save(user);
                  */
 
+                studentAccountService.createStudentAccount(student);
                 var jwtToken = jwtService.generateToken(student);
                 return AuthenticationResponse.builder().token(jwtToken).build();
         }
@@ -60,4 +62,5 @@ public class AuthenticationService {
                 var jwtToken = jwtService.generateToken(user);
                 return AuthenticationResponse.builder().token(jwtToken).build();
         }
+
 }

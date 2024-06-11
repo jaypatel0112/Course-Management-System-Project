@@ -104,6 +104,7 @@
       const token = localStorage.getItem('token');
       if (!token) {
         window.location.href = 'login.html';
+        return;
       }
 
       const authHeader = { headers: { Authorization: `Bearer ${token}` } };
@@ -132,7 +133,7 @@
                 <div class="card">
                   <div class="card-header">
                     ${discussion.topicHeading}
-                    <button class="btn-delete float-right" onclick="deleteDiscussion( '${discussion.emailId}')">Delete</button>
+                    <button class="btn-delete float-right" onclick="deleteDiscussion('${discussion.id}')">Delete</button>
                     <button class="btn-edit float-right mr-2" onclick="showUpdateForm('${discussion.id}', '${discussion.topicHeading}', '${discussion.description}')">Edit</button>
                   </div>
                   <div class="card-body">
@@ -166,9 +167,9 @@
           .catch(error => console.error('Error creating discussion:', error));
       });
 
-      window.deleteDiscussion = function ( emailId) {
+      window.deleteDiscussion = function (id) {
         if (confirm('Are you sure you want to delete this discussion?')) {
-          axios.delete(`http://localhost:8585/discussions/delete/${emailId}`, authHeader)
+          axios.delete(`http://localhost:8585/discussions/delete/${id}`, authHeader)
             .then(response => {
               loadDiscussions();
             })
@@ -177,6 +178,8 @@
       };
 
       window.showUpdateForm = function (id, topicHeading, description) {
+        const form = document.getElementById('createThreadForm');
+        form.style.display = 'block';
         document.getElementById("topicHeading").value = topicHeading;
         document.getElementById("description").value = description;
         document.getElementById("submitDiscussion").innerText = 'Update';
@@ -187,19 +190,38 @@
             description: document.getElementById("description").value
           };
 
-          axios.put(`http://localhost:8585/discussions/updateDiscussion/${courseId}`, updatedDiscussionData, authHeader)
+          axios.put(`http://localhost:8585/discussions/update/${id}`, updatedDiscussionData, authHeader)
             .then(response => {
               loadDiscussions();
               document.getElementById("topicHeading").value = '';
               document.getElementById("description").value = '';
+              document.getElementById("createThreadForm").style.display = 'none';
               document.getElementById("submitDiscussion").innerText = 'Submit';
-              document.getElementById("submitDiscussion").onclick = function () {
-                document.getElementById("submitDiscussion").click();
-              };
+              document.getElementById("submitDiscussion").onclick = submitNewDiscussion;
             })
             .catch(error => console.error('Error updating discussion:', error));
         };
       };
+
+      function submitNewDiscussion() {
+        const emailId = document.getElementById('welcomeMessage').innerText.replace('Welcome, ', '');
+        const discussionData = {
+          date: new Date().toISOString().split('T')[0], // current date in YYYY-MM-DD format
+          topicHeading: document.getElementById("topicHeading").value,
+          description: document.getElementById("description").value,
+          courseId: courseId,
+          emailId: emailId
+        };
+
+        axios.post('http://localhost:8585/discussions/create', discussionData, authHeader)
+          .then(response => {
+            loadDiscussions();
+            document.getElementById("topicHeading").value = '';
+            document.getElementById("description").value = '';
+            document.getElementById("createThreadForm").style.display = 'none';
+          })
+          .catch(error => console.error('Error creating discussion:', error));
+      }
 
       loadDiscussions();
     });

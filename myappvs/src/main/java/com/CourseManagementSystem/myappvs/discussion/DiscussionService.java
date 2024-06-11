@@ -34,24 +34,15 @@ public class DiscussionService {
         return discussionRepository.save(discussion);
     }
 
-    public void deleteDiscussion(String emailId) {
-        Optional<Discussion> optionalDiscussion = discussionRepository.findByEmailId(emailId);
-        if (optionalDiscussion.isPresent()) {
-            Discussion discussion = optionalDiscussion.get();
-            if (discussion.getEmailId().equals(emailId)) {
-                discussionRepository.deleteByEmailId(emailId);
-            } else {
-                throw new SecurityException("You are not authorized to delete this discussion.");
-            }
-        } else {
-            throw new EntityNotFoundException("Discussion not found");
-        }
+    public void deleteDiscussionById(String id) {
+        discussionRepository.deleteById(id);
     }
 
-    public Discussion updateDiscussion(String emailId, Discussion discussionDetails) {
-        Optional<Discussion> optionalDiscussion = discussionRepository.findByEmailId(emailId);
+    public Discussion updateDiscussion(String id, String emailId, Discussion discussionDetails) {
+        Optional<Discussion> optionalDiscussion = discussionRepository.findById(id);
         if (optionalDiscussion.isPresent()) {
             Discussion discussion = optionalDiscussion.get();
+            // Check if the email matches the creator's email
             if (discussion.getEmailId().equals(emailId)) {
                 discussion.setTopicHeading(discussionDetails.getTopicHeading());
                 discussion.setDescription(discussionDetails.getDescription());
@@ -63,4 +54,5 @@ public class DiscussionService {
             throw new EntityNotFoundException("Discussion not found");
         }
     }
+
 }

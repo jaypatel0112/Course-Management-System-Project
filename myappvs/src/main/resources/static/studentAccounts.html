@@ -10,20 +10,58 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #e9ecef;
+        }
+
+        .toolbar {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .toolbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .toolbar a:hover {
+            background-color: #0056b3;
+        }
+
+        .toolbar button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .toolbar button:hover {
+            background-color: #c82333;
         }
 
         .container {
             max-width: 800px;
             margin: 50px auto;
-            background-color: #fff;
+            background-color: #ffffff;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
-            color: #333;
+            color: #343a40;
+            text-align: center;
         }
 
         p {
@@ -38,20 +76,36 @@
         }
 
         table, th, td {
-            border: 1px solid black;
+            border: 1px solid #dee2e6;
         }
 
         th, td {
-            padding: 8px;
+            padding: 12px;
             text-align: left;
         }
 
         th {
-            background-color: #f4f4f4;
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
         }
     </style>
 </head>
 <body>
+<div class="toolbar">
+    <div>
+        <a href="home.html">Home</a>
+        <a href="courseCatalog.html">Course Catalog</a>
+        <a href="enrollments.html">Enrollments</a>
+    </div>
+    <div>
+        <span id="userName">Welcome, User</span>
+        <button id="logout-button" class="button">Logout</button>
+    </div>
+</div>
 <div class="container">
     <h1>Student Account Details</h1>
     <div id="studentAccountDetails">
@@ -59,19 +113,63 @@
     </div>
 </div>
 <script>
-    // Get the student account ID from the URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const studentAccountId = urlParams.get('id'); // Assuming the student account ID is passed as a query parameter
+document.addEventListener("DOMContentLoaded", function() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        window.location.href = 'login.html';
+        return; // Ensure script execution stops if token is not present
+    }
+fetch('http://localhost:8585/getName', {
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            })
+            .then(response => response.text())
+            .then(name => {
+                document.getElementById('userName').innerText = `Welcome, ${name}`;
+            })
+            .catch(error => console.error('Error fetching user name:', error));
+    // Fetch user ID
+    fetch('http://localhost:8585/api/studentaccounts/getId', {
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to fetch user ID');
+        }
+        return response.text(); // Assuming the API returns a plain text response
+    })
+    .then(studentAccountId => {
+        // Fetch student account details using the obtained studentAccountId
+        fetchStudentAccountDetails(studentAccountId, token);
+    })
+    .catch(error => {
+        console.error('Error fetching user ID:', error);
+        document.getElementById('studentAccountDetails').innerHTML = '<p>Error fetching user ID.</p>';
+    });
 
-    // Fetch student account details from the API
-    fetchStudentAccountDetails();
+    document.getElementById('logout-button').addEventListener('click', function() {
+        localStorage.removeItem('token');
+        window.location.href = 'login.html';
+    });
 
-    function fetchStudentAccountDetails() {
+    function fetchStudentAccountDetails(studentAccountId, token) {
         // Fetch data from your API
-        fetch(`/api/studentaccounts/${studentAccountId}`) // Replace {id} with the actual student account ID
-            .then(response => response.json())
-             .then(data => {
-            if (!data || data == null ) {
+        fetch(`/api/studentaccounts/${studentAccountId}`, {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch student account details');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (!data || data === null) {
                 // If no data is found, display a message
                 document.getElementById('studentAccountDetails').innerHTML = `<p>No details found.</p>`;
             } else {
@@ -97,17 +195,18 @@
                             <td>${studentName}</td>
                             <td>${studentEmail}</td>
                             <td>${studentPhoneNumber}</td>
-                            <td>${balance}</td>
+                            <td>&#36;${balance}</td>
                         </tr>
                     </table>
                 `;
             }
         })
-        .catch(error =>{
-            console.error('Error fetching student account details:', error)
-            document.getElementById('studentAccountDetails').innerHTML = '<p>No Pending Balance</p>';
-            });
-}
+        .catch(error => {
+            console.error('Error fetching student account details:', error);
+            document.getElementById('studentAccountDetails').innerHTML = '<p>Error fetching details.</p>';
+        });
+    }
+});
 </script>
 </body>
 </html>

@@ -70,37 +70,20 @@ public class DiscussionController {
         }
         return null;
     }
+
     @PutMapping("/update/{id}")
-    public Discussion updateDiscussion(@PathVariable String emailId, @RequestBody Discussion discussionDetails) {
-        return discussionService.updateDiscussion(emailId, discussionDetails);
+    public Discussion updateDiscussion(@PathVariable String id, @RequestBody Discussion discussionDetails) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()) {
+            String emailId = authentication.getName();
+            return discussionService.updateDiscussion(id, emailId, discussionDetails);
+        }
+        return null;
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteDiscussion(@PathVariable Long id) {
-        discussionService.deleteDiscussion(String.valueOf(id));
+    public void deleteDiscussion(@PathVariable String id) {
+        discussionService.deleteDiscussionById(String.valueOf(id));
     }
-//    @PostMapping("/testInsert")
-//    public Discussion insertTestDiscussion() {
-//        Student student = new Student();
-//        student.setStudentIdNumber(1L);
-//        student.setEmailId("student@example.com");
-//        student.setName("John Doe");
-//
-//        Catalog catalog = new Catalog();
-//        catalog.setCourseId(1L);
-//        catalog.setCourseId(101L);
-//        catalog.setCourseName("Computer Science");
-//
-//
-//        Discussion discussion = new Discussion();
-//        //discussion.setId(1L);
-//        discussion.setDate(LocalDate.now());
-//        discussion.setTopicHeading("Introduction to CS101");
-//
-//        discussion.setCourseId(catalog.getCourseId());
-//        discussion.setDescription("Discussion about the introduction to CS101 course.");
-//
-//        return discussionService.saveDiscussion(discussion);
-//    }
 
 }

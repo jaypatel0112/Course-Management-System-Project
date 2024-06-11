@@ -2,6 +2,8 @@ package com.CourseManagementSystem.myappvs.courseCatalog;
 
 import java.util.List;
 import java.util.Optional;
+
+import com.CourseManagementSystem.myappvs.studentAccounts.StudentAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +22,8 @@ public class EnrollmentService {
 
     @Autowired
     private CatalogRepository catalogRepo;
+    @Autowired
+    private StudentAccountService studentAccountService;
 
     @Autowired
     private EntityManager entityManager;
@@ -47,6 +51,8 @@ public class EnrollmentService {
 
         System.out.println(enrollment);
         repo.save(enrollment);
+        double courseCost = course.getCourseCredits() * 900;
+        studentAccountService.updateBalanceOnEnrollment(student.getStudentIdNumber(), courseCost, course.getCourseId());
     }
 
     public Long getStudentId(String email) {
@@ -74,6 +80,8 @@ public class EnrollmentService {
         Optional<Enrollment> enrollmentOpt = repo.findById(id);
         if (enrollmentOpt.isPresent()) {
             Enrollment enrollment = enrollmentOpt.get();
+            double courseCost = enrollment.getCatalog().getCourseCredits() * 900;
+            studentAccountService.revertBalanceOnEnrollmentDeletion(enrollment.getStudent().getStudentIdNumber(), courseCost, enrollment.getCatalog().getCourseId());
             enrollment.setStudent(null); // Break relationship
             enrollment.setCatalog(null); // Break relationship
             repo.delete(enrollment);

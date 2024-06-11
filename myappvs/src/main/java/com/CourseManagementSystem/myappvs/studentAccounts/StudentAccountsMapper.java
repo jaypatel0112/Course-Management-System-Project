@@ -7,7 +7,9 @@ public class StudentAccountsMapper {
         StudentAccounts studentAccounts = new StudentAccounts(
                 studentAccountDto.getStudentAccountsId(),
                 studentAccountDto.getStudentId(),
+                studentAccountDto.getCourseId(),
                 studentAccountDto.getBalance()
+
         );
         return studentAccounts;
     }
@@ -15,6 +17,7 @@ public class StudentAccountsMapper {
         StudentAccountDto studentAccountDto= new StudentAccountDto(
                 studentAccounts.getStudentAccountsId(),
                 studentAccounts.getStudentId(),
+                studentAccounts.getCourseId(),
                 studentAccounts.getBalance()
 
         );
