@@ -4,156 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/appointments.css">
     <title>Advising Appointments</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            height: 100vh;
-        }
-
-        .toolbar {
-            background-color: #343a40;
-            color: white;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .toolbar a {
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-
-        .toolbar a:hover {
-            text-decoration: underline;
-        }
-
-        .container {
-            width: 90%;
-            height: 80%;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            gap: 20px;
-        }
-
-        .appointments-container {
-            flex: 2;
-        }
-
-        .form-container {
-            flex: 1;
-            font-size: 16px;
-            max-width: 400px;
-            padding: 20px;
-        }
-
-        h1,
-        h2 {
-            margin: 0 0 20px;
-        }
-
-        table {
-            width: 100%;
-            margin: 20px auto;
-            table-layout: auto;
-            border-collapse: collapse;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            background-color: white;
-        }
-
-        table,
-        th,
-        td {
-            border: 1px solid #ddd;
-        }
-
-        th,
-        td {
-            padding: 12px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #343a40;
-            color: white;
-        }
-
-        form {
-            margin: 0 auto 30px;
-            text-align: left;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        input,
-        select,
-        textarea {
-            font-size: 14px;
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-
-        .datetime-container {
-            width: 100%;
-            display: flex;
-            gap: 10px;
-        }
-
-        .datetime-container input {
-            width: 80%;
-        }
-
-        button {
-            padding: 10px 15px;
-            border: none;
-            background-color: #28a745;
-            color: #fff;
-            font-size: 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-bottom: 20px;
-        }
-
-        button:hover {
-            background-color: #218838;
-        }
-
-        button.cancelButton {
-            background-color: red;
-        }
-
-        button.cancelButton:hover {
-            background-color: rgba(255, 0, 0, 0.454);
-        }
-
-        .appointments {
-            margin-top: 20px;
-            text-align: left;
-        }
-
-        .appointment {
-            background-color: #f9f9f9;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            margin-bottom: 10px;
-        }
-    </style>
 </head>
 
 <body>
@@ -200,7 +52,8 @@
                         </div>
                         <div>
                             <label for="appointment-time">Time:</label>
-                            <input type="time" id="appointment-time" name="appointmentTime" required>
+                            <input type="time" id="appointment-time" name="appointmentTime" min="09:00" max="17:00"
+                                required>
                         </div>
                     </div>
 
@@ -221,8 +74,11 @@
                 window.location.href = 'login.html';
             }
 
+            var today = new Date().toISOString().split('T')[0];
+            document.getElementsByName("appointmentDate")[0].setAttribute('min', today);
+
             // Fetch the user's name
-            fetch('http://localhost:8585/getName', {
+            fetch('/getName', {
                 headers: {
                     'Authorization': 'Bearer ' + token
                 }
@@ -233,7 +89,7 @@
                 });
 
             // Fetch student Appointments
-            fetch('http://localhost:8585/appointments/showall-student', {
+            fetch('appointments/showall-student', {
                 headers: {
                     'Authorization': 'Bearer ' + token
                 }
@@ -257,14 +113,14 @@
 
                         dateCell.innerHTML = appointment.appointmentDate;
                         timeCell.innerHTML = appointment.appointmentTime;
-                        advisorCell.innerHTML = `${appointment.advisor.name}\n<a>${appointment.advisor.email}</a>`;
+                        advisorCell.innerHTML = `${appointment.advisor.name} (<a href= "mailto: ${appointment.advisor.email}">${appointment.advisor.email}</a>)`;
                         notesCell.innerHTML = appointment.appointmentNote;
                         actionCell.innerHTML = `<button class="cancelButton" onClick="cancelAppt('${appointment.id}')">Cancel</button>`;
                     });
                 })
                 .catch(error => console.error('Error fetching appointments:', error));
 
-            fetch('http://localhost:8585/advisors/all')
+            fetch('/advisors/all')
                 .then(response => response.json())
                 .then(data => {
                     const select = document.getElementById("advisor");
@@ -290,7 +146,7 @@
 
                 console.log(appointmentRequest);
 
-                fetch('http://localhost:8585/appointments/bookAppointment', {
+                fetch('/appointments/bookAppointment', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -313,24 +169,24 @@
             });
 
             window.cancelAppt = function (id) {
-                    fetch(`http://localhost:8585/appointments/${id}`, {
-                        method: 'DELETE',
-                        headers: {
-                            'Authorization': 'Bearer ' + token
+                fetch(`/appointments/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': 'Bearer ' + token
+                    }
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Failed to cancel appointment.');
                         }
+                        alert('Appointment canceled successfully!');
+                        location.reload();  // Refresh the page to reflect the changes
                     })
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Failed to cancel appointment.');
-                            }
-                            alert('Appointment canceled successfully!');
-                            location.reload();  // Refresh the page to reflect the changes
-                        })
-                        .catch(error => {
-                            console.error('Error cancelling appointment:', error);
-                            alert('Failed to cancel appointment. Please try again.');
-                        });
-                };
+                    .catch(error => {
+                        console.error('Error cancelling appointment:', error);
+                        alert('Failed to cancel appointment. Please try again.');
+                    });
+            };
 
         });
     </script>
