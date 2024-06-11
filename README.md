@@ -1,14 +1,14 @@
 # COURSE_MANAGEMENT_SYSTEM
-The objective of the Project is to develop an Application which is similar to D2L. Major sections of this App would be:
+The objective of the Project is to develop an Application which is similar to D2L. Major sections of this App are:
 1. Login / Sign-up, Events
 2. Course Catalog and Enrollment Section
 3. Course Detail Page
 4. Student Accounts
 5. Profile
-6. Student Resources
+6. Renting Equipment for Classes
 7. Advisors Appointment
 
-All of these Sections will be Accessible from a HomePage similar to Campus Connect. All the sections will be displayed as Cards to select from. The submission document for this app is located [here.](https://docs.google.com/document/d/1O24gv_99QWmvtr7fXyRh1UDozIoA5l4M_CWXlHaJSF8/edit)
+All of these Sections are Accessible from a HomePage similar to Campus Connect. The submission document for this app is located [here.](https://docs.google.com/document/d/1O24gv_99QWmvtr7fXyRh1UDozIoA5l4M_CWXlHaJSF8/edit)
 
 # Project Members
 
@@ -21,6 +21,6 @@ All of these Sections will be Accessible from a HomePage similar to Campus Conne
 | Siddiqui Atif                        | Equipment, rental                                  |
 
 
-We have expanded the scope of the project based on the suggestions by professor.
+
 
 
