@@ -5,4 +5,4 @@
  * 
  * @author Guntaka Satish Harshavardhan Reddy
  */
-package com.CourseManagementSystem.myappvs.advsior;
+package com.CourseManagementSystem.myappvs.advisor;

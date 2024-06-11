@@ -1,8 +1,9 @@
-package com.CourseManagementSystem.myappvs.advsior;
+package com.CourseManagementSystem.myappvs.advisor;
 
 
 import com.CourseManagementSystem.myappvs.appointment.Appointment;
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.List;
 
@@ -14,18 +15,25 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString.Exclude;
 
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter @Setter
 @Table(name = "advisors")
 public class Advisor {
     
     @Id
-    @Column(name = "advisor_id", nullable = false)
+    @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long advisorId;
 
     private String name;
 
@@ -33,5 +41,6 @@ public class Advisor {
 
     @Exclude
     @OneToMany(mappedBy = "advisor",fetch = FetchType.LAZY)
+    @JsonBackReference
     private List<Appointment> appointments;
 }
