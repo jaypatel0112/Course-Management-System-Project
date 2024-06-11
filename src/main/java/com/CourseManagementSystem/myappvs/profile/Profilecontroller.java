@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import com.CourseManagementSystem.myappvs.student.Student;
 import com.CourseManagementSystem.myappvs.student.Studentrepository;
+import com.CourseManagementSystem.myappvs.studentAccounts.StudentAccountsRepository;
+
+import jakarta.transaction.Transactional;
 
 import java.util.Map;
 import java.util.Optional;
@@ -19,6 +22,8 @@ public class Profilecontroller {
 
     @Autowired
     private Studentrepository studentRepository;
+    @Autowired
+    private StudentAccountsRepository studentAccountRepository;
 
     @GetMapping
     public ResponseEntity<Map<String, Object>> showProfile() {
@@ -29,8 +34,7 @@ public class Profilecontroller {
         if (authentication != null && authentication.isAuthenticated()) {
             // Extract user email from authentication principal
             String emailId = authentication.getName();
-            System.out.println("email id the user is "+emailId);
-           
+            System.out.println("email id the user is " + emailId);
 
             // Fetch user profile using email
             Optional<Student> student = studentRepository.findByEmailId(emailId);
@@ -80,6 +84,7 @@ public class Profilecontroller {
         }
     }
 
+    @Transactional
     @DeleteMapping
     public ResponseEntity<?> deleteProfile() {
         // Retrieve authentication information from SecurityContextHolder
@@ -93,6 +98,9 @@ public class Profilecontroller {
             // Fetch user profile using email
             Optional<Student> student = studentRepository.findByEmailId(emailId);
             if (student.isPresent()) {
+                // Delete all student accounts related to the student
+                studentAccountRepository.deleteByStudentId(student.get());
+
                 studentRepository.delete(student.get());
                 return ResponseEntity.ok().build();
             } else {
@@ -103,4 +111,5 @@ public class Profilecontroller {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
+
 }
