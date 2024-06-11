@@ -14,7 +14,7 @@
  * * Added a page to view all the rentals in the system
  * * Added additional finders such as find by status and find by equipment type
  * * Added a page to view all the equipment in the system for second repository
- * *
+ * * Please note: the rent buttons doesn't work on the first few attempts, not sure why, but if you click on it a few times it should eventually work
  * @author Atif Siddiqui
  */
 
