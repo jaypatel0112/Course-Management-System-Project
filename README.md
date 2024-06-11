@@ -8,7 +8,7 @@ The objective of the Project is to develop an Application which is similar to D2
 6. Student Resources
 7. Advisors Appointment
 
-All of these Sections will be Accessible from a HomePage similar to Campus Connect. All the sections will be displayed as Cards to select from. The prototype for this app demonstrates these features and is located [here.](https://docs.google.com/presentation/d/1QjD8G9kpWbk5O_mX6PxxExSkT-fPpU7aEpygSH_JCzo/edit?usp=sharing)
+All of these Sections will be Accessible from a HomePage similar to Campus Connect. All the sections will be displayed as Cards to select from. The submission document for this app is located [here.](https://docs.google.com/document/d/1O24gv_99QWmvtr7fXyRh1UDozIoA5l4M_CWXlHaJSF8/edit)
 
 # Project Members
 
