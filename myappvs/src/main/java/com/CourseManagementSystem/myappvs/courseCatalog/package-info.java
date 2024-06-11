@@ -1,5 +1,5 @@
 /**
- * This Package consists of Two Entities : a) Catalog 
+ * This Package consists : 
  * 1.Catalog Entity:
  * This entity represents the table storing all the Courses and its respective information to be displayed to students for them to be able to enroll.
  * 
@@ -15,23 +15,7 @@
  * 5. courseCatalog.html 
  * This is the HTML file containing HTML, CSS, Javascript code to send appropriate requests and to handle the responses.
  * 
- * b)Enrollment
- * 1.Enrollment Entity:
- * This represents the table storing all the enrollments per student for each enrolled course
- * 
- * 2.Enrollment Repository
- * This is the JPA Repository class responsible to communicate with enrollment table in the Database.
- * 
- * 3.Enrollment Service
- * Service class the fetch student, catalog object and insert an enrollment record into the enrollment table after student enrolls particular course
- * 
- * 4.Enrollment Controller
- * Receives the request to post the enrollment of a student.
- * <li>One to one relationship between student and user.
- * 
- * 5. enrollments.html 
- * This is the HTML file containing HTML, CSS, Javascript code to send appropriate requests and to handle the responses. This is a completely dynamic page.
- * 
+ 
  * 
  * @author Puneeth Talluri
  */

@@ -1,4 +1,4 @@
-package com.CourseManagementSystem.myappvs.courseCatalog;
+package com.CourseManagementSystem.myappvs.enrollments;
 
 import java.util.ArrayList;
 import java.util.List;

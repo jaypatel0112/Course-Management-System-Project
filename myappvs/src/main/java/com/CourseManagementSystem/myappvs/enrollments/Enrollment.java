@@ -1,5 +1,6 @@
-package com.CourseManagementSystem.myappvs.courseCatalog;
+package com.CourseManagementSystem.myappvs.enrollments;
 
+import com.CourseManagementSystem.myappvs.courseCatalog.Catalog;
 import com.CourseManagementSystem.myappvs.student.Student;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

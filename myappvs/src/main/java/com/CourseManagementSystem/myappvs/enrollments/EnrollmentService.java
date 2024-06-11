@@ -1,10 +1,13 @@
-package com.CourseManagementSystem.myappvs.courseCatalog;
+package com.CourseManagementSystem.myappvs.enrollments;
 
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.CourseManagementSystem.myappvs.courseCatalog.Catalog;
+import com.CourseManagementSystem.myappvs.courseCatalog.CatalogRepository;
 import com.CourseManagementSystem.myappvs.student.Student;
 import com.CourseManagementSystem.myappvs.student.Studentrepository;
 import jakarta.persistence.EntityManager;
