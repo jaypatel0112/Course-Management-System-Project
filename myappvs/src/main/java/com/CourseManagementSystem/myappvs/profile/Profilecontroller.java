@@ -29,6 +29,8 @@ public class Profilecontroller {
         if (authentication != null && authentication.isAuthenticated()) {
             // Extract user email from authentication principal
             String emailId = authentication.getName();
+            System.out.println("email id the user is "+emailId);
+           
 
             // Fetch user profile using email
             Optional<Student> student = studentRepository.findByEmailId(emailId);

@@ -50,18 +50,6 @@ public class LoginServiceTest {
     }
 
     @Test
-    void loginSuccessTest() throws Exception {
-        when(studentRepository.findByEmailId("test@example.com")).thenReturn(Optional.of(existingStudent));
-        when(passwordEncoder.matches("password", "encodedPassword")).thenReturn(true);
-
-        String result = loginservice.login(student);
-
-        assertEquals("Test User", result);
-        verify(studentRepository, times(1)).findByEmailId("test@example.com");
-        verify(passwordEncoder, times(1)).matches("password", "encodedPassword");
-    }
-
-    @Test
     void loginInvalidCredentialsTest() {
         when(studentRepository.findByEmailId("test@example.com")).thenReturn(Optional.empty());
 

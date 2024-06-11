@@ -35,6 +35,12 @@ public class Equipment {
     @Column(name = "status", nullable = false)
     private String status;
 
+    @Column(name = "max_quantity", nullable = false)
+    private int maxQuantity;
+
+    @Column(name = "available_quantity", nullable = false)
+    private int availableQuantity;
+
     @OneToMany(mappedBy = "equipment", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Rental> rentals;

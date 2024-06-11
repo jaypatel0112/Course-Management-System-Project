@@ -26,6 +26,7 @@
             <div>
                 <label for="number">Phone Number:</label>
                 <input type="text" id="number" name="number" required>
+                <span id="phone-error" class="error"></span>
             </div>
             <div>
                 <label for="studentIdNumber">Student ID Number:</label>
@@ -39,14 +40,30 @@
     <script>
         document.getElementById("signup-form").addEventListener("submit", async function(event) {
             event.preventDefault(); // Prevent form submission
-            
+
             // Clear previous error messages
             document.getElementById("email-error").textContent = "";
+            document.getElementById("phone-error").textContent = "";
             document.getElementById("student-id-error").textContent = "";
+
+            // Validate phone number and student ID
+            const phone = document.getElementById("number").value;
+            const studentId = document.getElementById("studentIdNumber").value;
+            const phoneRegex = /^\d{10}$/;
+            const studentIdRegex = /^\d{5}$/;
+
+            if (!phoneRegex.test(phone)) {
+                document.getElementById("phone-error").textContent = "Phone number must be exactly 10 digits";
+                return;
+            }
+
+            if (!studentIdRegex.test(studentId)) {
+                document.getElementById("student-id-error").textContent = "Student ID must be exactly 5 digits";
+                return;
+            }
 
             // Check if email and student ID are unique
             const email = document.getElementById("emailId").value;
-            const studentId = document.getElementById("studentIdNumber").value;
             const emailExists = await checkEmailExists(email);
             const studentIdExists = await checkStudentIdExists(studentId);
 
@@ -55,17 +72,17 @@
                 return;
             }
             if (studentIdExists) {
-                document.getElementById("student-id-error").textContent = "Student ID exist in our records";
+                document.getElementById("student-id-error").textContent = "Student ID exists in our records";
                 return;
             }
 
-            // If both email is unique and student ID exists, proceed with signup
+            // If all validations pass, proceed with signup
             var formData = {
                 name: document.getElementById("name").value,
                 emailId: email,
                 password: document.getElementById("password").value,
                 studentIdNumber: studentId,
-                number: document.getElementById("number").value
+                number: phone
             };
 
             fetch('/api/v1/auth/signup', {

@@ -24,11 +24,10 @@ INSERT INTO Enrollment(Enrollment_Id, student_id, courseId) VALUES (2, 123456789
 INSERT INTO Enrollment(Enrollment_Id, student_id, courseId) VALUES (3, 987654321, 102);
 
 -- Insert into instructor table
-<<<<<<< HEAD
 INSERT INTO Instructor(instructorId, instructorName, instructorDescription, meetingHours, instructorCabinLocation) VALUES (1, 'John Doe', 'Experienced software engineer', '08:00:00', 'Building A, Room 101');
 INSERT INTO Instructor(instructorId, instructorName, instructorDescription, meetingHours, instructorCabinLocation) VALUES (2, 'Alice Smith', 'Data science expert', '10:00:00', 'Building B, Room 201');
 INSERT INTO Instructor(instructorId, instructorName, instructorDescription, meetingHours, instructorCabinLocation) VALUES (3, 'David Brown', 'Network security specialist', '13:00:00', 'Building C, Room 301');
-=======
+
 INSERT INTO instructor(instructor_id, instructor_name, instructor_description, meeting_hours, instructor_cabin_location) VALUES (201, 'John Doe', 'Experienced software engineer', '08:00:00', 'Building A, Room 101');
 INSERT INTO instructor(instructor_id, instructor_name, instructor_description, meeting_hours, instructor_cabin_location) VALUES (202, 'Alice Smith', 'Data science expert', '10:00:00', 'Building B, Room 201');
 INSERT INTO instructor(instructor_id, instructor_name, instructor_description, meeting_hours, instructor_cabin_location) VALUES (203, 'David Brown', 'Network security specialist', '13:00:00', 'Building C, Room 301');
@@ -45,11 +44,13 @@ INSERT INTO course_description(course_description_id, course_id, instructor_id, 
 INSERT INTO student_accounts(student_accounts_id, student_id, balance) VALUES (1, 123456789, 100.00);
 INSERT INTO student_accounts(student_accounts_id, student_id, balance) VALUES (2, 987654321, 200.00);
 INSERT INTO student_accounts(student_accounts_id, student_id, balance) VALUES (3, 114365567, 150.00);
->>>>>>> f1af734651c4217e6638d28f4dea30cb11ce7aee
 
--- Insert initial data into the Equipment table
-INSERT INTO inventory(resource_id, resource_name, type, status) VALUES (1, 'Laptop 1', 'Laptop', 'Available');
-INSERT INTO inventory(resource_id, resource_name, type, status) VALUES (2, 'Projector 1', 'Projector', 'Rented');
+
+-- Insert initial data into the Inventory table
+INSERT INTO inventory (resource_id, resource_name, type, status, max_quantity, available_quantity) VALUES (1, 'Laptop', 'Electronics', 'Available', 10, 10);
+INSERT INTO inventory (resource_id, resource_name, type, status, max_quantity, available_quantity) VALUES (2, 'Projector', 'Electronics', 'Available', 5, 5);
+INSERT INTO inventory (resource_id, resource_name, type, status, max_quantity, available_quantity) VALUES (3, 'Microphone', 'Audio', 'Available', 15, 15);
 
 -- Insert initial data into the Rentals table
-INSERT INTO rentals (allocation_id, class_id, resource_id, allocation_date, return_date) VALUES (1, 101, 2, '2024-04-01', '2024-04-10');
+INSERT INTO rental (id, equipment_id, user_email, rental_date, return_date) VALUES (1, 2, 'user1@example.com', '2024-04-01', '2024-04-10');
+INSERT INTO rental (id, equipment_id, user_email, rental_date, return_date) VALUES (2, 1, 'user2@example.com', '2024-04-05', '2024-04-15');
