@@ -3,7 +3,7 @@ The objective of the Project is to develop an Application which is similar to D2
 1. Login / Sign-up, Events
 2. Course Catalog and Enrollment Section
 3. Course Detail Page
-4. Student Accounts
+4. Student Accounts, Discussion 
 5. Profile
 6. Renting Equipment for Classes
 7. Advisors Appointment
@@ -12,13 +12,13 @@ All of these Sections are Accessible from a HomePage similar to Campus Connect. 
 
 # Project Members
 
-| Member                               | Area                                               |
-|--------------------------------------|--------------------------------------              |
-| Patel Jay Rashmitbhai                | event, student, user                               |
-| Reddy Guntaka Satish Harshavardhan   | advisor, appointment                               |
-| Puneeth Talluri                      | Course Catalog, Enrollment Section                 |
-| Patel Shivangi                       | Course Details, Instructor, Student Accounts       |
-| Siddiqui Atif                        | Equipment, rental                                  |
+| Member                               | Area                                                      |
+|--------------------------------------|--------------------------------------                     |
+| Patel Jay Rashmitbhai                | event, student, user                                      |
+| Reddy Guntaka Satish Harshavardhan   | advisor, appointment                                      |
+| Puneeth Talluri                      | Course Catalog, Enrollment Section                        |
+| Patel Shivangi                       | Course Details, Instructor, Student Accounts,Discussion   |
+| Siddiqui Atif                        | Equipment, rental                                         |
 
 
 
