@@ -8,9 +8,12 @@
  * The rental tables currently are tied to user account info, and are only displayed ot logged-in users
  * and keep track of the rentals they have taken out.
  * Added One for one between the Rentals repository and the Rental Service
- * Everything in the rentals package is a work in progress and is being worked on by me.
- * *
- * *
+ * * Added Logging and unit tests for the Rentals service
+ * * Added a page to view the user's rentals once they have logged in and rented equipment
+ * * Used CRUD Operations to create, read, update, and delete rentals
+ * * Added a page to view all the rentals in the system
+ * * Added additional finders such as find by status and find by equipment type
+ * * Added a page to view all the equipment in the system for second repository
  * *
  * @author Atif Siddiqui
  */
