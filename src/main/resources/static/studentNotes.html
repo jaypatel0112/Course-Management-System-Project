@@ -120,7 +120,7 @@
             }
 
             // Fetch the user's name
-            fetch('http://localhost:8585/getName', {
+            fetch('/getName', {
                 headers: {
                     'Authorization': 'Bearer ' + token
                 }
@@ -131,7 +131,7 @@
             });
 
             // Fetch student notes
-            fetch('http://localhost:8585/studentNotes', {
+            fetch('/studentNotes', {
                 headers: {
                     'Authorization': 'Bearer ' + token
                 }
@@ -165,7 +165,7 @@
                     noteContent: document.getElementById('noteContent').value
                 };
 
-                fetch('http://localhost:8585/studentNotes', {
+                fetch('/studentNotes', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -188,7 +188,7 @@
 
             // Function to delete a note
             window.deleteNote = function(noteId) {
-                fetch('http://localhost:8585/studentNotes/' + noteId, {
+                fetch(`/studentNotes/${noteId}`, {
                     method: 'DELETE',
                     headers: {
                         'Authorization': 'Bearer ' + token

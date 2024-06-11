@@ -110,14 +110,14 @@
 
       const authHeader = { headers: { Authorization: `Bearer ${token}` } };
 
-       fetch('http://localhost:8585/discussions/getEmail', authHeader)
+       fetch('/discussions/getEmail', authHeader)
         .then(response => response.text())
         .then(emailId => {
           window.userEmail = emailId;
         })
         .catch(error => console.error('Error fetching email ID:', error));
 
-      fetch('http://localhost:8585/getName', authHeader)
+      fetch('/getName', authHeader)
         .then(response => response.text())
         .then(name => {
           document.getElementById('welcomeMessage').innerText = `Welcome, ${name}`;
@@ -133,7 +133,7 @@
       });
 
       function loadDiscussions() {
-        axios.get(`http://localhost:8585/discussions/showDiscussion/${courseId}`, authHeader)
+        axios.get(`/discussions/showDiscussion/${courseId}`, authHeader)
           .then(response => {
             let discussionsHtml = "";
             response.data.forEach(discussion => {
@@ -165,7 +165,7 @@
           emailId: emailId
         };
 
-        axios.post('http://localhost:8585/discussions/create', discussionData, authHeader)
+        axios.post('/discussions/create', discussionData, authHeader)
           .then(response => {
             loadDiscussions();
             document.getElementById("topicHeading").value = '';
@@ -177,7 +177,7 @@
 
      window.deleteDiscussion = function (id) {
     if (confirm('Are you sure you want to delete this discussion?')) {
-      axios.delete(`http://localhost:8585/discussions/delete/${id}`, authHeader)
+      axios.delete(`/discussions/delete/${id}`, authHeader)
         .then(response => {
           loadDiscussions();
         })
@@ -210,7 +210,7 @@
 
 
 
-          axios.put(`http://localhost:8585/discussions/update/${id}`, updatedDiscussionData, authHeader)
+          axios.put(`/discussions/update/${id}`, updatedDiscussionData, authHeader)
             .then(response => {
               loadDiscussions();
               document.getElementById("topicHeading").value = '';
@@ -239,7 +239,7 @@
           emailId: emailId
         };
 
-        axios.post('http://localhost:8585/discussions/create', discussionData, authHeader)
+        axios.post('/discussions/create', discussionData, authHeader)
           .then(response => {
             loadDiscussions();
             document.getElementById("topicHeading").value = '';
@@ -261,7 +261,7 @@
 <body>
 <div class="toolbar">
   <div>
-    <a href="http://localhost:8585/home.html">Home</a>
+    <a href="home.html">Home</a>
   </div>
 
   <div id="welcomeMessage">

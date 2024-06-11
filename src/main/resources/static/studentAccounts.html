@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function() {
         window.location.href = 'login.html';
         return; // Ensure script execution stops if token is not present
     }
-fetch('http://localhost:8585/getName', {
+fetch('/getName', {
                 headers: {
                     'Authorization': 'Bearer ' + token
                 }
@@ -130,7 +130,7 @@ fetch('http://localhost:8585/getName', {
             })
             .catch(error => console.error('Error fetching user name:', error));
     // Fetch user ID
-    fetch('http://localhost:8585/api/studentaccounts/getId', {
+    fetch('/api/studentaccounts/getId', {
         headers: {
             'Authorization': 'Bearer ' + token
         }

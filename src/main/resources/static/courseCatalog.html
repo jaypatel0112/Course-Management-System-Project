@@ -68,8 +68,8 @@
 <body>
     <div class="toolbar">
         <div>
-            <a href="http://localhost:8585/home.html">Home</a>
-            <a href="http://localhost:8585/enrollments.html">Enrollments</a>
+            <a href="home.html">Home</a>
+            <a href="enrollments.html">Enrollments</a>
         </div>
         <div id="welcomeMessage">
             Welcome, User
@@ -100,7 +100,7 @@
             }
 
             // Fetch user name
-            fetch('http://localhost:8585/getName', {
+            fetch('/getName', {
                 headers: {
                     'Authorization': 'Bearer ' + token
                 }
@@ -112,7 +112,7 @@
             .catch(error => console.error('Error fetching user name:', error));
 
             // Fetch courses
-            fetch('http://localhost:8585/getCourses', {
+            fetch('/getCourses', {
                 headers: {
                     'Authorization': 'Bearer ' + token
                 }
@@ -140,7 +140,7 @@
             .catch(error => console.error('Error fetching data:', error));
 
             function enrollCourse(courseId) {
-                fetch('http://localhost:8585/enroll/enrollCourse', {
+                fetch('/enroll/enrollCourse', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

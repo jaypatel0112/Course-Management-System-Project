@@ -58,8 +58,8 @@
 <body>
 <div class="toolbar">
     <div>
-        <a href="http://localhost:8585/home.html">Home</a>
-        <a href="http://localhost:8585/enrollments.html">Enrollments</a>
+        <a href="home.html">Home</a>
+        <a href="enrollments.html">Enrollments</a>
         <button id="discussionButton">Discussion Forum</button>
     </div>
     <div id="welcomeMessage">
@@ -84,7 +84,7 @@
         }
 
         // Fetch user name
-        fetch('http://localhost:8585/getName', {
+        fetch('/getName', {
             headers: {
                 'Authorization': 'Bearer ' + token
             }
@@ -100,7 +100,7 @@
         const courseId = urlParams.get('courseId'); // Assuming the course ID is passed as a query parameter
 
         document.getElementById('discussionButton').addEventListener('click', function() {
-            window.location.href = `http://localhost:8585/discussion.html?courseId=${courseId}`;
+            window.location.href = `/discussion.html?courseId=${courseId}`;
         });
 
         // Fetch course details from the API
