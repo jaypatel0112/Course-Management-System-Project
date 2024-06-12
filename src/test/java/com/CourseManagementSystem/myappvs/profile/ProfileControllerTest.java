@@ -96,9 +96,6 @@ public class ProfileControllerTest {
         assertEquals("0987654321", existingStudent.getNumber());
     }
 
-<<<<<<< HEAD
+
 
 }
-=======
-}
->>>>>>> 631880ba5b8c6adce7383826885784770ec99f06
