@@ -58,8 +58,8 @@
 <body>
 <div class="toolbar">
     <div>
-        <a href="home.html">Home</a>
-        <a href="enrollments.html">Enrollments</a>
+        <a href="http://localhost:8585/home.html">Home</a>
+        <a href="http://localhost:8585/enrollments.html">Enrollments</a>
         <button id="discussionButton">Discussion Forum</button>
     </div>
     <div id="welcomeMessage">
@@ -70,11 +70,7 @@
 <div id="courseDetails">
     <!-- Course details will be displayed here -->
 </div>
-<div class="project-form">
-    <input type="text" id="projectTopic" placeholder="Enter project topic" />
-    <button id="submitProjectButton">Submit</button>
-    <button id="deleteProjectButton">Delete</button>
-</div>
+
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -84,7 +80,7 @@
         }
 
         // Fetch user name
-        fetch('/getName', {
+        fetch('http://localhost:8585/getName', {
             headers: {
                 'Authorization': 'Bearer ' + token
             }
@@ -100,7 +96,7 @@
         const courseId = urlParams.get('courseId'); // Assuming the course ID is passed as a query parameter
 
         document.getElementById('discussionButton').addEventListener('click', function() {
-            window.location.href = `/discussion.html?courseId=${courseId}`;
+            window.location.href = `http://localhost:8585/discussion.html?courseId=${courseId}`;
         });
 
         // Fetch course details from the API

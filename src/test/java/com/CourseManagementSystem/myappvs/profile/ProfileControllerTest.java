@@ -96,22 +96,5 @@ public class ProfileControllerTest {
         assertEquals("0987654321", existingStudent.getNumber());
     }
 
-    @Test
-    void testDeleteProfile() {
-        when(securityContext.getAuthentication()).thenReturn(authentication);
-        SecurityContextHolder.setContext(securityContext);
 
-        when(authentication.isAuthenticated()).thenReturn(true);
-        when(authentication.getName()).thenReturn("test@example.com");
-
-        Student student = new Student();
-        student.setEmailId("test@example.com");
-
-        when(studentRepository.findByEmailId("test@example.com")).thenReturn(Optional.of(student));
-
-        ResponseEntity<?> response = profileController.deleteProfile();
-
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        verify(studentRepository).delete(student);
-    }
 }

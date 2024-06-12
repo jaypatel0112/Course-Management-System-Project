@@ -1,5 +1,5 @@
 /**
- * The Event's entity
+ * The Event's entity where the user can update and delete his event
  * 
  * @author Jay Rashmitbhai Patel
  */
