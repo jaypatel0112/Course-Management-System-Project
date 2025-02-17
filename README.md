@@ -69,8 +69,8 @@ The Course Management System includes the following major sections:
 3. **Run the Application**:
     bash
     Copy
-    mvn spring-boot:run
-4. **Access the Application**:
+    mvn spring-boot:run OR Run the Application directly.
+5. **Access the Application**:
     Open your browser and navigate to http://localhost:8585.
 ## Application Sections
 
