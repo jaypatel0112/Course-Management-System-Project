@@ -1,6 +1,12 @@
 # Course Management System
 
-The **Course Management System** is a web application designed to provide a platform similar to D2L (Desire2Learn) for managing courses, student accounts, events, and more. It is built using **Spring Boot** for the backend and **HTML/CSS/JavaScript** for the frontend. The application is deployed on an **AWS EC2 instance** and is accessible at [http://3.132.95.238:8585](http://3.132.95.238:8585).
+The **Course Management System** is a web application designed to provide a platform similar to D2L (Desire2Learn) for managing courses, student accounts, events, and more. It is built using **Spring Boot** for the backend and **HTML/CSS/JavaScript** for the frontend. The application is deployed on an **AWS EC2 instance** and is accessible at [http://3.132.95.238:8585](http://3.132.95.238:8585) But it is very basic look of the application this application is modified and is made great as shown in image below.
+
+<img width="1466" alt="index" src="https://github.com/user-attachments/assets/365aba51-783e-45d7-a0a4-b71983463103" />
+<img width="1375" alt="SignUp" src="https://github.com/user-attachments/assets/70689ffa-8dd3-4b61-81db-719feda616e3" />
+<img width="1323" alt="Login" src="https://github.com/user-attachments/assets/ba4f9fd8-267b-48c8-87bb-c5ebffceff13" />
+
+
 
 ---
 
